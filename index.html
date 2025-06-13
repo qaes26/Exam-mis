@@ -1,0 +1,1622 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الفصل الثالث: نظم المعلومات الإدارية والعمليات الإدارية | إعداد وتقديم: قيس طلال غالب الجازي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&family=Lalezar&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #b71c1c; /* Deep Red */
+            --secondary-color: #000000; /* Black */
+            --accent-color: #ffcc00; /* Gold/Yellow for highlight */
+            --text-color-on-light: #000000; /* Black text on light background */
+            --text-color-on-dark: #ffffff; /* White text on dark background */
+            --bg-color: #f8f8f8; /* Very Light Gray */
+            --container-bg: #ffffff;
+            --border-color: #444444; /* Dark Gray border */
+            --highlight-bg: #ffebee; /* Light Pink/Red tint */
+            --highlight-border: var(--primary-color);
+            --note-bg: #424242; /* Dark Gray for notes */
+            --note-border: var(--accent-color);
+            --note-text-color: #f5f5f5;
+            --header-font: 'Lalezar', cursive; /* More decorative for headers */
+            --body-font: 'Tajawal', sans-serif;
+            --button-bg: var(--primary-color);
+            --button-hover-bg: #8c1616; /* Darker Red */
+            --button-text-color: #ffffff;
+        }
+
+        /* Heart Animation */
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        .heart {
+            position: fixed;
+            top: -50px; /* Start above screen */
+            font-size: 2rem; /* Adjust size of hearts */
+            color: var(--primary-color); /* Hearts color */
+            animation: fall 10s linear infinite;
+            opacity: 0.6;
+            z-index: -1; /* Behind content */
+        }
+        /* End Heart Animation */
+
+
+        body {
+            font-family: var(--body-font);
+            line-height: 1.9;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color-on-light);
+            padding: 20px;
+            font-size: 17px; /* Slightly larger base */
+            overflow-x: hidden; /* Prevent horizontal scroll from hearts */
+        }
+
+        .container {
+            background-color: var(--container-bg);
+            padding: 35px 45px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            max-width: 1100px;
+            margin: 40px auto;
+            border-top: 7px solid var(--primary-color);
+            position: relative; /* For stacking context */
+        }
+
+        .title-section {
+            text-align: center; /* Keeps h1 and p.subtitle centered */
+            margin-bottom: 45px;
+            padding: 40px 20px 30px 20px;
+            background: var(--secondary-color);
+            color: var(--text-color-on-dark);
+            border-radius: 0 0 8px 8px;
+            margin: -35px -45px 45px -45px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            position: relative; /* Needed for absolute positioning of author */
+        }
+        .title-section::before {
+            content: '';
+            position: absolute;
+            top: -10px; right: -10px;
+            width: 50px; height: 50px;
+            background: var(--accent-color);
+            opacity: 0.3;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .title-section h1 {
+            font-family: var(--header-font);
+            font-size: 3.2em;
+            font-weight: 700; 
+            margin-top: 0; 
+            margin-bottom: 10px;
+            color: var(--primary-color); 
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 1;
+        }
+        .title-section p.subtitle {
+            font-family: var(--body-font);
+            font-size: 1.3em;
+            color: #cccccc; 
+            margin-bottom: 50px; /* Increased space for author credits below */
+            position: relative;
+            z-index: 1;
+        }
+        
+        .author-credits {
+            position: absolute; 
+            bottom: 15px;     
+            right: 20px;      
+            font-family: var(--body-font);
+            font-size: 1.0em; 
+            color: #dddddd;
+            text-align: right; 
+            z-index: 1;
+        }
+
+        .author-credits span {
+            display: block;
+            font-family: var(--header-font);
+            font-size: 1.3em; 
+            color: var(--primary-color); 
+            margin-top: 3px; 
+            letter-spacing: 0.5px;
+            padding-bottom: 2px;
+            border-bottom: 1px dotted var(--accent-color);
+            display: inline-block;
+        }
+
+
+        h2, h3, h4 {
+            font-family: var(--header-font);
+            font-weight: 700; 
+        }
+
+        h2 {
+            font-size: 2.6em;
+            color: var(--primary-color); 
+            margin-top: 45px;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--secondary-color); 
+            position: relative;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+        }
+        
+        h2::before {
+            content: "✦"; 
+            display: inline-block;
+            color: var(--secondary-color); 
+            font-size: 1.1em;
+            margin-left: 12px; 
+            vertical-align: baseline;
+        }
+
+
+        h3 {
+            font-size: 2em;
+            color: var(--secondary-color); 
+            margin-top: 35px;
+            margin-bottom: 18px;
+            border-bottom: 1px dashed var(--primary-color);
+            padding-bottom: 5px;
+        }
+
+
+        h4 {
+            font-size: 1.6em;
+            color: #4d0000; /* Darker Red */
+            margin-top: 28px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            text-align: justify;
+            margin-bottom: 20px;
+            font-size: 1.15em; 
+            color: var(--text-color-on-light);
+        }
+
+        ul, ol {
+            margin-bottom: 20px;
+            padding-right: 30px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+        ul li::marker {
+            content: "❦"; 
+            font-size: 0.9em;
+            color: var(--primary-color);
+        }
+        ol li::marker {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .highlight, .note {
+            padding: 20px 28px;
+            border-radius: 8px;
+            margin-bottom: 22px;
+            border-right: 6px solid; 
+            box-shadow: 0 3px 7px rgba(0,0,0,0.08);
+        }
+
+        .highlight {
+            background-color: var(--highlight-bg);
+            border-right-color: var(--highlight-border);
+            color: #5d0000; 
+        }
+        .highlight strong {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .note {
+            background-color: var(--note-bg);
+            border-right-color: var(--note-border);
+            color: var(--note-text-color);
+        }
+        .note strong {
+            color: var(--note-border);
+            font-weight: 700;
+        }
+
+        .page-ref {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 0.95em;
+            display: inline-block;
+            margin-right: 7px; 
+            background-color: #fff0f0; 
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .figure-ref {
+            font-style: italic;
+            color: var(--secondary-color); 
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 28px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        th, td {
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 20px;
+            text-align: right;
+        }
+        td { border-left: 1px solid var(--border-color); }
+        td:first-child { border-left: none; }
+
+
+        th {
+            background: var(--secondary-color); 
+            color: var(--primary-color); 
+            font-family: var(--header-font);
+            font-weight: 700;
+            font-size: 1.2em;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #fde0e0; 
+        }
+        
+        tr:hover td {
+            background-color: #ffcdd2; 
+            color: var(--secondary-color); 
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        hr.section-divider {
+            border: 0;
+            height: 2px;
+            background-image: linear-gradient(to left, rgba(0, 0, 0, 0), var(--primary-color), rgba(0, 0, 0, 0));
+            margin: 50px 0;
+        }
+
+        /* Quiz Styles */
+        #quiz-container {
+            margin-top: 40px;
+            padding: 30px;
+            background-color: #fff5f5; 
+            border: 1px solid var(--primary-color);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(183, 28, 28, 0.1);
+        }
+        .question-block {
+            margin-bottom: 25px;
+        }
+        .question-text {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--secondary-color); 
+            margin-bottom: 15px;
+        }
+        .options-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options-list li {
+            margin-bottom: 10px;
+            background-color: var(--container-bg);
+            padding: 12px 15px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            color: var(--text-color-on-light);
+        }
+        .options-list li:hover, .options-list li.selected {
+            background-color: var(--highlight-bg);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        .options-list input[type="radio"] {
+            margin-left: 10px; 
+            accent-color: var(--primary-color); 
+            transform: scale(1.3);
+        }
+        .quiz-navigation button {
+            background-color: var(--button-bg);
+            color: var(--button-text-color);
+            border: none;
+            padding: 12px 25px;
+            font-family: var(--header-font);
+            font-size: 1.1em;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-right: 10px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .quiz-navigation button:hover {
+            background-color: var(--button-hover-bg);
+            transform: translateY(-2px) scale(1.05);
+        }
+        .quiz-navigation button:disabled {
+            background-color: #9e9e9e; 
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        #quiz-score {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: var(--primary-color); 
+            text-align: center;
+            margin-top: 30px;
+            padding: 25px;
+            background-color: var(--highlight-bg);
+            border-radius: 8px;
+            border: 2px dashed var(--primary-color);
+        }
+         #quiz-score p { text-align: center; margin: 0; }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 25px;
+                margin: 20px;
+            }
+            .title-section {
+                padding: 25px 15px 50px 15px; 
+                margin: -20px -25px 30px -25px;
+            }
+            .title-section h1 { font-size: 2.5em; }
+            .author-credits { font-size: 0.9em; bottom: 10px; right: 15px; }
+            .author-credits span { font-size: 1.2em; }
+            h2 { font-size: 2em; }
+            h3 { font-size: 1.7em; }
+            h4 { font-size: 1.4em;}
+            p, li { font-size: 1em; }
+            table { font-size: 0.95em; }
+            th, td { padding: 10px 12px; }
+            .quiz-navigation button { padding: 10px 20px; font-size: 1em; }
+            .heart { font-size: 1.5rem; }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="hearts-bg"></div> 
+
+    <div class="container">
+        <div class="title-section">
+            <h1>الفصل الثالث</h1>
+            <p class="subtitle">نظم المعلومات الإدارية والعمليات الإدارية</p>
+            <div class="author-credits">
+                إعداد وتقديم:
+                <span>قيس طلال غالب الجازي</span>
+            </div>
+        </div>
+
+        <h2>مقدمة <span class="page-ref">(صفحة 65 بالكتاب الأصلي، هنا صفحة 67 حسب ترقيم الكتاب)</span></h2>
+        <p>
+            يبدأ هذا الفصل الهام بالتأكيد على أن نجاح أي منظمة، سواء كانت ربحية أو غير ربحية، يعتمد بشكل كبير على قدرتها على أداء عملياتها الإدارية والتشغيلية بكفاءة وفعالية. إن عالم الأعمال الحديث يتسم بالديناميكية والتنافسية الشديدة، مما يجعل من الضروري على المنظمات أن تسعى باستمرار لتحسين أدائها وتحقيق أهدافها الاستراتيجية.
+        </p>
+        <p>
+            تتعامل المنظمات يوميًا مع كم هائل من المعلومات والبيانات التي تتدفق من مصادر متعددة. فمن جهة، هناك الموردون الذين يزودون المنظمة بالمواد الخام أو الخدمات، ومن جهة أخرى هناك الزبائن الذين يشكلون محور اهتمام المنظمة ويتطلبون تلبية احتياجاتهم ورغباتهم. داخليًا، هناك الموظفون الذين يمثلون العصب الحقيقي للمنظمة ويقومون بتنفيذ مختلف المهام. بالإضافة إلى ذلك، هناك تدفقات مالية مستمرة متمثلة في الفواتير الصادرة والواردة، والمدفوعات والمتحصلات.
+        </p>
+        <p>
+            في هذا السياق المعقد، تبرز أهمية نظم المعلومات كأدوات حاسمة لا غنى عنها. فهذه النظم تلعب دورًا محوريًا في تنظيم هذه التدفقات الهائلة من المعلومات، وتنسيق الأنشطة المختلفة داخل المنظمة، وتحسين الاتصالات بين الأقسام ومع الأطراف الخارجية. إنها بمثابة الجهاز العصبي للمنظمة الذي يجمع ويعالج وينقل المعلومات اللازمة لاتخاذ القرارات السليمة وفي الوقت المناسب.
+        </p>
+        <p>
+            يهدف هذا الفصل إلى تزويد القارئ بفهم عميق لما يلي:
+        </p>
+        <ul>
+            <li><strong>تعريف العمليات الإدارية:</strong> ما هي، وما هي مكوناتها الأساسية، وكيف تساهم في تحقيق أهداف المنظمة.</li>
+            <li><strong>العلاقة بين العمليات الإدارية ونظم المعلومات:</strong> كيف يمكن لنظم المعلومات أن تدعم وتحسن هذه العمليات.</li>
+            <li><strong>أنواع نظم المعلومات المختلفة:</strong> سيتم استعراض الأنواع الرئيسية لنظم المعلومات بناءً على المستويات التنظيمية التي تخدمها (تشغيلية، معرفية، إدارية، استراتيجية) والوظائف الإدارية التي تدعمها (مبيعات وتسويق، إنتاج، مالية، موارد بشرية).</li>
+            <li><strong>تدفق المعلومات:</strong> كيف تتدفق المعلومات بين هذه النظم المختلفة داخل المنظمة.</li>
+            <li><strong>دور نظم المعلومات في دعم المسؤوليات والمهام:</strong> كيف تساهم هذه النظم في تمكين الموظفين والمديرين من أداء مهامهم ووظائفهم بفعالية أكبر.</li>
+        </ul>
+        <p>
+            باختصار، يقدم هذا الفصل الأساس لفهم كيف يمكن للمنظمات أن تستخدم نظم المعلومات كأداة استراتيجية لتحسين عملياتها وتحقيق ميزة تنافسية مستدامة.
+        </p>
+
+        <hr class="section-divider">
+
+        <h2>3.1 العمليات الإدارية (Business Processes) <span class="page-ref">(صفحة 67)</span></h2>
+        <div class="highlight">
+            <p><strong>العمليات الإدارية (Business Processes):</strong> هي الطريقة التي يتم بها تنظيم العمل وتنسيقه وتوجيهه من أجل إنتاج منتجات أو خدمات ذات قيمة مضافة للزبائن أو للمنظمة نفسها. يمكن النظر إليها كسلسلة من الأنشطة المترابطة منطقيًا، والتي عند تنفيذها بشكل متسلسل أو متوازٍ، تحول المدخلات (مثل المواد الخام، المعلومات، الموارد البشرية) إلى مخرجات (مثل المنتج النهائي، الخدمة المقدمة، قرار معين).</p>
+        </div>
+        <p>
+            لفهم أعمق، يمكن تفصيل تعريف العمليات الإدارية كالتالي:
+        </p>
+        <ul>
+            <li><strong>تنظيم العمل وتنسيقه وتوجيهه:</strong> تشير إلى أن العمليات ليست عشوائية، بل هي مصممة ومخطط لها. هناك هيكل وإجراءات محددة تحكم كيفية تنفيذ الأنشطة.</li>
+            <li><strong>إنتاج منتجات وخدمات ذات قيمة:</strong> الهدف النهائي لأي عملية هو خلق قيمة. هذه القيمة قد تكون ملموسة (مثل سيارة، وجبة طعام) أو غير ملموسة (مثل استشارة قانونية، خدمة عملاء).</li>
+            <li><strong>سلسلة من الأنشطة المترابطة منطقيًا:</strong> الأنشطة داخل العملية ليست منعزلة، بل يعتمد كل نشاط على مخرجات النشاط الذي يسبقه، ويوفر مدخلات للنشاط الذي يليه. هذا الترابط المنطقي يضمن تدفق العمل بسلاسة نحو تحقيق الهدف.</li>
+            <li><strong>تدفق المواد والمعلومات والمعرفة:</strong> العمليات الإدارية تتضمن تدفقات متعددة. فالمواد الخام تتحرك عبر مراحل التصنيع، والمعلومات (مثل طلبات العملاء، مواصفات المنتج) توجه هذه الحركة، والمعرفة (مثل خبرة الموظفين، أفضل الممارسات) تُستخدم لتحسين الأداء.</li>
+        </ul>
+
+        <h4>أمثلة على العمليات الإدارية:</h4>
+        <p>
+            يقدم الكتاب بعض الأمثلة لتوضيح مفهوم العمليات الإدارية:
+        </p>
+        <ul>
+            <li>
+                <strong>الشكل (3-1) <span class="figure-ref">(صفحة 68)</span>:</strong> يوضح هذا الشكل مخططًا عامًا لعملية إدارية. <div class="note"><strong>ملاحظة:</strong> كما ذكرت في طلبك، غالبًا ما تبدأ الرسوم التوضيحية للعمليات بالمدخلات التي تتحول عبر خطوات إلى مخرجات. التسميات في الشكل (مخرجات -> خطوة أولى -> ... -> مدخلات) قد تكون بحاجة لمراجعة في سياق الفهم التقليدي للعمليات. العملية النموذجية تبدأ بالمدخلات، ثم تمر بمجموعة من الخطوات (المعالجة)، لتنتهي بالمخرجات.</div>
+                <ul>
+                    <li><strong>المدخلات (Inputs):</strong> هي الموارد التي تحتاجها العملية لتبدأ (مثال: طلب عميل، مواد خام، معلومات).</li>
+                    <li><strong>الخطوات/المعالجة (Processing Steps):</strong> هي الأنشطة التي تحول المدخلات إلى مخرجات (مثال: تصميم المنتج، تجميع الأجزاء، فحص الجودة، معالجة الطلب).</li>
+                    <li><strong>المخرجات (Outputs):</strong> هي النتيجة النهائية للعملية (مثال: منتج جاهز، خدمة مقدمة، فاتورة).</li>
+                </ul>
+            </li>
+            <li>
+                <strong>مثال عملي: عملية شراء المواد (Procurement Process) <span class="figure-ref">(الشكل 3-2، صفحة 68)</span>:</strong> هذا مثال أكثر تحديدًا لعملية إدارية شائعة في معظم المنظمات. دعنا نفصل خطواتها:
+                <ol>
+                    <li><strong>الحاجة إلى المواد (قسم المخازن):</strong> تبدأ العملية عندما يكتشف قسم المخازن أن مستوى مخزون مادة معينة قد انخفض إلى ما دون الحد الأدنى المطلوب، أو عند وجود طلب خاص لمادة غير متوفرة. هذه هي "المشكلة" أو "الحاجة" التي تحفز العملية.</li>
+                    <li><strong>طلب الشراء (قسم المخازن إلى قسم المشتريات):</strong> يقوم قسم المخازن بإعداد طلب شراء رسمي يتضمن تفاصيل المواد المطلوبة (النوع، الكمية، المواصفات) ويرسله إلى قسم المشتريات. هذا الطلب هو بمثابة تفويض لقسم المشتريات للبحث عن موردين.</li>
+                    <li><strong>الموافقة وإصدار أمر الشراء (قسم المشتريات إلى المورد):</strong> يقوم قسم المشتريات بمراجعة طلب الشراء، وقد يبحث عن عروض أسعار من موردين مختلفين لاختيار الأفضل (بناءً على السعر، الجودة، شروط التسليم). بعد الموافقة، يصدر قسم المشتريات أمر شراء رسمي ويرسله إلى المورد المختار. أمر الشراء هو عقد ملزم قانونًا.</li>
+                    <li><strong>شحن البضاعة (المورد إلى قسم المخازن):</strong> يقوم المورد بتجهيز البضاعة المطلوبة وشحنها إلى عنوان المنظمة (عادةً إلى قسم المخازن مباشرة).</li>
+                    <li><strong>استلام البضاعة ومقارنتها (قسم المخازن):</strong> عند وصول البضاعة، يقوم قسم المخازن باستلامها وفحصها للتأكد من مطابقتها لأمر الشراء من حيث الكمية والجودة. كما يتم مقارنة إشعار الاستلام مع الفاتورة الواردة من المورد.</li>
+                    <li><strong>إرسال الدفعة (قسم المحاسبة إلى المورد):</strong> بعد التأكد من صحة كل شيء، يقوم قسم المخازن بإعلام قسم المحاسبة. بدوره، يقوم قسم المحاسبة بمعالجة الفاتورة وإرسال الدفعة المستحقة إلى المورد.</li>
+                </ol>
+                <p>
+                    هذه العملية تتضمن تدفق معلومات (طلبات، أوامر، فواتير) ومواد (البضاعة) بين أقسام مختلفة داخل المنظمة (المخازن، المشتريات، المحاسبة) ومع طرف خارجي (المورد). أي خلل أو تأخير في أي خطوة يمكن أن يؤثر على العملية بأكملها.
+                </p>
+            </li>
+        </ul>
+
+        <h4>أهمية تحسين العمليات الإدارية:</h4>
+        <p>
+            المنظمات التي تنجح في تحسين عملياتها الإدارية بشكل مستمر يمكنها تحقيق العديد من المزايا التنافسية، منها:
+        </p>
+        <ul>
+            <li><strong>زيادة الكفاءة:</strong> إنجاز العمل بكمية أقل من الموارد (وقت، مال، جهد)، مما يقلل التكاليف.</li>
+            <li><strong>تحسين الفعالية:</strong> تحقيق الأهداف المرجوة من العملية بشكل أفضل، مثل إنتاج منتجات ذات جودة أعلى أو تقديم خدمات ترضي العملاء.</li>
+            <li><strong>تقليل الأخطاء:</strong> العمليات المصممة جيدًا تقلل من احتمالية حدوث الأخطاء والهدر.</li>
+            <li><strong>زيادة سرعة الاستجابة:</strong> القدرة على تلبية احتياجات العملاء أو التغيرات في السوق بسرعة أكبر.</li>
+            <li><strong>تحسين رضا العملاء:</strong> تقديم منتجات وخدمات أفضل بشكل أسرع وأكثر موثوقية يؤدي إلى عملاء أكثر ولاءً.</li>
+            <li><strong>تعزيز الابتكار:</strong> العمليات المرنة يمكن أن تسهل تطوير منتجات وخدمات جديدة.</li>
+        </ul>
+
+        <h4>أنواع العمليات الإدارية <span class="page-ref">(صفحة 69)</span>:</h4>
+        <p>
+            يمكن تصنيف العمليات الإدارية بشكل عام إلى نوعين رئيسيين:
+        </p>
+        <ol>
+            <li>
+                <strong>العمليات الإدارية الوظيفية (Functional Business Processes):</strong>
+                <p>
+                    هي العمليات التي تقتصر أنشطتها بشكل أساسي على منطقة وظيفية واحدة داخل المنظمة. كل قسم أو إدارة (مثل التسويق، الإنتاج، المالية) لديه مجموعة من العمليات الخاصة به.
+                </p>
+                <p>
+                    <strong>الجدول (3-1) <span class="figure-ref">(صفحة 69 وصفحة 70)</span></strong> يقدم أمثلة على هذه العمليات ضمن الوظائف المختلفة:
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>الوظيفة الأساسية</th>
+                            <th>أمثلة على العمليات الإدارية الوظيفية</th>
+                            <th>شرح تفصيلي إضافي</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>التصنيع والإنتاج</strong> <span class="page-ref">(صفحة 69)</span></td>
+                            <td>
+                                <ul>
+                                    <li>تفقيد الإنتاج</li>
+                                    <li>جدولة الإنتاج</li>
+                                    <li>تجميع المنتج</li>
+                                    <li>تصميم سير العمل</li>
+                                    <li>فحص الجودة للمنتج</li>
+                                    <li>تحديد الزبائن (قد تكون مشتركة أحيانًا مع التسويق)</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <p><strong>تفقيد الإنتاج:</strong> مراقبة سير العمليات الإنتاجية للتأكد من أنها تسير وفقًا للخطة، وتحديد أي مشكلات أو اختناقات. يشمل قياس الأداء الفعلي ومقارنته بالمستهدف.</p>
+                                <p><strong>جدولة الإنتاج:</strong> تحديد ماذا سيتم إنتاجه، ومتى، وبأي كميات، وباستخدام أي موارد (آلات، عمال). الهدف هو تلبية الطلب مع الاستخدام الأمثل للموارد.</p>
+                                <p><strong>تجميع المنتج:</strong> عملية تركيب الأجزاء والمكونات المختلفة لتكوين المنتج النهائي وفقًا للمواصفات المحددة.</p>
+                                <p><strong>تصميم سير العمل:</strong> تحديد تسلسل الخطوات والمهام اللازمة لإنتاج منتج أو تقديم خدمة، وتوزيع المسؤوليات على الأفراد أو الآلات.</p>
+                                <p><strong>فحص الجودة للمنتج:</strong> التأكد من أن المنتج النهائي يفي بمعايير الجودة المحددة من خلال اختبارات وعينات، وذلك قبل وصوله إلى العميل.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>المبيعات والتسويق</strong> <span class="page-ref">(صفحة 69)</span></td>
+                            <td>
+                                <ul>
+                                    <li>تلقي طلبات الزبائن</li>
+                                    <li>الترويج للمنتجات والخدمات</li>
+                                    <li>تقديم خدمات ما بعد البيع</li>
+                                    <li>بدء عملية تنفيذ طلبات الزبائن</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <p><strong>تلقي طلبات الزبائن:</strong> استقبال طلبات الشراء من العملاء عبر قنوات مختلفة (هاتف، موقع إلكتروني، مندوب مبيعات)، وتسجيلها بدقة.</p>
+                                <p><strong>الترويج للمنتجات والخدمات:</strong> جميع الأنشطة التي تهدف إلى تعريف العملاء المحتملين بالمنتجات أو الخدمات وإقناعهم بشرائها (إعلانات، حملات تسويقية، عروض خاصة).</p>
+                                <p><strong>تقديم خدمات ما بعد البيع:</strong> الدعم الذي يقدم للعملاء بعد شراء المنتج، مثل الصيانة، الضمان، الإجابة على الاستفسارات، حل المشكلات.</p>
+                                <p><strong>بدء عملية تنفيذ طلبات الزبائن:</strong> الخطوات الأولى بعد تلقي الطلب، مثل التحقق من توفر المنتج في المخزون، أو جدولة الإنتاج إذا لم يكن متوفرًا.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>التمويل والمحاسبة</strong> <span class="page-ref">(صفحة 70)</span></td>
+                            <td>
+                                <ul>
+                                    <li>إدارة التدفق النقدي</li>
+                                    <li>معالجة الدفعات الواردة من الزبائن</li>
+                                    <li>معالجة الدفعات الصادرة للبائعين</li>
+                                    <li>إعداد القوائم المالية</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <p><strong>إدارة التدفق النقدي:</strong> مراقبة وتخطيط حركة النقد الداخل والخارج من المنظمة لضمان توفر السيولة الكافية لتغطية الالتزامات قصيرة الأجل.</p>
+                                <p><strong>معالجة الدفعات الواردة من الزبائن:</strong> تسجيل وتحصيل الأموال المستحقة من العملاء مقابل المنتجات أو الخدمات المباعة.</p>
+                                <p><strong>معالجة الدفعات الصادرة للبائعين:</strong> سداد الفواتير المستحقة للموردين والمقاولين مقابل السلع أو الخدمات التي تم شراؤها.</p>
+                                <p><strong>إعداد القوائم المالية:</strong> تجميع البيانات المالية وإعداد التقارير الرسمية (مثل قائمة الدخل، الميزانية العمومية، قائمة التدفقات النقدية) التي تعكس أداء المنظمة ووضعها المالي.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>الموارد البشرية</strong> <span class="page-ref">(صفحة 70)</span></td>
+                            <td>
+                                <ul>
+                                    <li>تعيين الموظفين</li>
+                                    <li>تدريب الموظفين</li>
+                                    <li>إدارة حقوق والتزامات ومفاوضات الموظفين</li>
+                                    <li>تحديد الاحتياجات من القوى العاملة</li>
+                                    <li>تقييم أداء الموظفين</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <p><strong>تعيين الموظفين:</strong> عملية استقطاب واختيار وتوظيف الكفاءات المناسبة لشغل الوظائف الشاغرة في المنظمة.</p>
+                                <p><strong>تدريب الموظفين:</strong> تزويد الموظفين الجدد والحاليين بالمهارات والمعرفة اللازمة لأداء وظائفهم بفعالية، وتطوير قدراتهم.</p>
+                                <p><strong>إدارة حقوق والتزامات ومفاوضات الموظفين:</strong> التعامل مع عقود العمل، الرواتب والمزايا، الإجازات، العلاقات العمالية، وأي مفاوضات مع النقابات العمالية (إن وجدت).</p>
+                                <p><strong>تحديد الاحتياجات من القوى العاملة:</strong> تخطيط عدد ونوع الموظفين الذين ستحتاجهم المنظمة في المستقبل لتحقيق أهدافها.</p>
+                                <p><strong>تقييم أداء الموظفين:</strong> قياس أداء الموظفين بشكل دوري ومقارنته بالأهداف والمعايير المحددة، وتقديم التغذية الراجعة.</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+            <li>
+                <strong>العمليات الإدارية المشتركة بين الوظائف (Cross-Functional Business Processes) <span class="page-ref">(صفحة 70)</span>:</strong>
+                <p>
+                    هي عمليات أكثر تعقيدًا، حيث تتطلب أنشطتها التنسيق والتعاون بين عدة أقسام أو وظائف مختلفة داخل المنظمة. هذه العمليات حيوية لأنها غالبًا ما تمثل كيفية إنجاز العمل الحقيقي الذي يراه العميل.
+                </p>
+                <p>
+                    الهدف من هذه العمليات هو كسر الحواجز (الصوامع أو "Silos") بين الإدارات المختلفة، وتشجيع النظرة الشاملة للمنظمة ككل.
+                </p>
+                <p>
+                    <strong>مثال: عملية تلبية الطلبات (Order Fulfillment Process) <span class="figure-ref">(كما يوضحها الشكل 3-3، صفحة 71)</span>:</strong>
+                </p>
+                <p>
+                    هذه العملية تبدأ عندما يقدم العميل طلبًا لشراء منتج أو خدمة، وتنتهي بتسليم ذلك المنتج أو الخدمة للعميل وتحصيل قيمتها. هذه العملية تشمل عادةً الأقسام التالية:
+                </p>
+                <ul>
+                    <li><strong>قسم المبيعات:</strong> يتلقى الطلب من العميل، يسجل بياناته، وقد يتفاوض على السعر أو الشروط.</li>
+                    <li><strong>قسم المحاسبة (أو المالية):</strong> يتحقق من ائتمان العميل (إذا كان الشراء بالآجل)، ويصدر الفاتورة.</li>
+                    <li><strong>قسم التصنيع/الإنتاج (أو المخازن):</strong> إذا كان المنتج جاهزًا، يتم تجهيزه من المخزون. إذا لم يكن جاهزًا، يتم إرسال أمر إنتاج لقسم التصنيع.</li>
+                    <li><strong>قسم الشحن/اللوجستيات:</strong> يقوم بتغليف المنتج وشحنه إلى عنوان العميل.</li>
+                    <li><strong>قسم خدمة العملاء:</strong> قد يتابع مع العميل للتأكد من رضاه، ويتعامل مع أي استفسارات أو مشكلات بعد البيع.</li>
+                </ul>
+                <p>
+                    نجاح هذه العملية يعتمد على التدفق السلس للمعلومات والتعاون الفعال بين كل هذه الأقسام. أي تأخير أو خطأ في قسم واحد يمكن أن يؤثر سلبًا على العملية بأكملها وعلى رضا العميل.
+                </p>
+            </li>
+        </ol>
+
+        <hr class="section-divider">
+
+        <h2>3.1.1 العلاقة بين نظم المعلومات والعمليات الإدارية <span class="page-ref">(صفحة 71)</span></h2>
+        <p>
+            تلعب نظم المعلومات دورًا حيويًا ومتزايد الأهمية في دعم وتحسين العمليات الإدارية. يمكن لنظم المعلومات أن تؤثر على العمليات بعدة طرق رئيسية:
+        </p>
+        <ol>
+            <li>
+                <strong>أتمتة العمليات اليدوية (Automation of Manual Processes):</strong>
+                <p>
+                    هذا هو التأثير الأكثر مباشرة وتقليدية. يمكن لنظم المعلومات أن تحل محل المهام الروتينية والمتكررة التي كان يقوم بها البشر يدويًا.
+                </p>
+                <ul>
+                    <li><strong>مثال:</strong> بدلاً من حساب الرواتب يدويًا لكل موظف، يمكن لنظام معلومات الرواتب القيام بذلك تلقائيًا بناءً على البيانات المدخلة (ساعات العمل، معدل الأجر، الخصومات)، مما يوفر الوقت ويقلل الأخطاء.</li>
+                    <li><strong>مثال آخر:</strong> أتمتة عملية إصدار الفواتير، حيث يقوم النظام بإنشاء الفواتير وإرسالها للعملاء بناءً على بيانات المبيعات.</li>
+                    <li><strong>مزايا الأتمتة:</strong> زيادة السرعة، تقليل التكاليف (خاصة تكاليف العمالة)، تقليل الأخطاء البشرية، تحسين الاتساق في الأداء.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>تغيير تدفق المعلومات (Changing the Flow of Information) <span class="page-ref">(صفحة 72)</span>:</strong>
+                <p>
+                    يمكن لنظم المعلومات أن تغير بشكل جذري كيفية تدفق المعلومات داخل العملية الواحدة أو بين العمليات المختلفة.
+                </p>
+                <ul>
+                    <li><strong>إتاحة المعلومات لعدد أكبر من المشاركين:</strong> بدلاً من أن تكون المعلومات محصورة في قسم واحد أو لدى عدد قليل من الأفراد، يمكن لنظم المعلومات أن تجعلها متاحة (بشكل آمن ومتحكم فيه) لجميع من يحتاجونها في الوقت المناسب.</li>
+                    <li><strong>تمكين العمل المتوازي بدلاً من التسلسلي:</strong> في العمليات التقليدية، غالبًا ما يجب أن تنتهي خطوة بالكامل قبل أن تبدأ الخطوة التالية (تسلسلية). نظم المعلومات يمكن أن تسمح لعدة خطوات أو مهام بالحدوث في نفس الوقت (متوازية) لأن المعلومات اللازمة متاحة للجميع. هذا يقلل بشكل كبير من الوقت الإجمالي لإنجاز العملية.</li>
+                    <li><strong>تسريع عملية اتخاذ القرار:</strong> عندما تكون المعلومات الدقيقة والمحدثة متاحة بسهولة للمديرين وصناع القرار، يمكنهم اتخاذ قرارات أفضل وبشكل أسرع.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>تغيير طريقة عمل الأعمال نفسها (Changing How Business is Done) <span class="page-ref">(صفحة 72)</span>:</strong>
+                <p>
+                    هذا هو التأثير الأعمق والأكثر استراتيجية. نظم المعلومات لا تقتصر على تحسين العمليات القائمة، بل يمكنها أن تؤدي إلى ظهور نماذج عمل جديدة تمامًا أو تغييرات جذرية في كيفية تفاعل المنظمات مع عملائها ومورديها.
+                </p>
+                <ul>
+                    <li>
+                        <strong>مثال (أ): تحميل كتاب إلكتروني من أمازون (Amazon Kindle):</strong>
+                        <p>
+                            قبل الكتب الإلكترونية، كانت عملية شراء كتاب تتضمن الذهاب إلى مكتبة أو طلب الكتاب وانتظار وصوله بالبريد. نظم المعلومات التي تدعم Kindle غيرت هذه العملية بالكامل:
+                        </p>
+                        <ul>
+                            <li>يمكن للعميل تصفح ملايين الكتب عبر الإنترنت.</li>
+                            <li>الدفع يتم إلكترونيًا.</li>
+                            <li>الكتاب يتم تحميله فورًا على جهاز القراءة.</li>
+                            <li>ظهرت عمليات جديدة مثل إدارة الحقوق الرقمية (DRM)، وتحديثات البرامج للأجهزة.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>مثال (ب): تنزيل مقطوعة موسيقية من آيتونز (iTunes) أو خدمات مشابهة:</strong>
+                        <p>
+                            مشابه لمثال الكتب، غيرت هذه الخدمات طريقة شراء واستهلاك الموسيقى، من شراء الألبومات المادية إلى شراء الأغاني الفردية رقميًا.
+                        </p>
+                    </li>
+                    <li>
+                        <strong>مثال (ج): دفع ثمن السلع والخدمات عبر شبكة الإنترنت:</strong>
+                        <p>
+                            أتاحت نظم المعلومات ظهور التجارة الإلكترونية، حيث يمكن للعملاء الشراء والدفع عبر الإنترنت، وتغيير عمليات البيع بالتجزئة التقليدية.
+                        </p>
+                    </li>
+                    <li>
+                        <strong>مثال (د): مساعدة موظفي الحجوزات في الفنادق:</strong>
+                        <p>
+                            بدلاً من السجلات الورقية اليدوية، تستخدم الفنادق نظم معلومات لحفظ سجلات الحجوزات وإدارتها. هذا يقلل الأخطاء ويسهل البحث عن الحجوزات.
+                        </p>
+                    </li>
+                    <li>
+                        <strong>مثال (هـ): إدخال نظام حجوزات غرف يغير تدفق المعلومات:</strong>
+                        <p>
+                            عندما يكون نظام الحجوزات مركزيًا ومتاحًا عبر الشبكة، يمكن لعدة موظفين في أقسام مختلفة (الاستقبال، المبيعات، الإدارة) الوصول إلى نفس المعلومات المحدثة حول توفر الغرف والأسعار. هذا يحسن التنسيق ويقلل من الحجوزات المزدوجة.
+                        </p>
+                    </li>
+                    <li>
+                        <strong>مثال (و): السماح للزبائن بحجز غرف فندقية عبر الإنترنت:</strong>
+                        <p>
+                            هذا مثال على تمكين العميل من القيام بالعملية بنفسه (Self-Service). يقلل هذا من عبء العمل على موظفي الفندق ويوفر للعميل مرونة أكبر في الحجز في أي وقت ومن أي مكان.
+                        </p>
+                    </li>
+                </ul>
+                <p>
+                    هذه الأمثلة تظهر كيف أن نظم المعلومات ليست مجرد أدوات دعم، بل هي عوامل تمكين للتغيير والابتكار في العمليات ونماذج الأعمال.
+                </p>
+            </li>
+        </ol>
+
+        <hr class="section-divider">
+
+        <h2>3.2 أنواع نظم المعلومات (Types of Information Systems) <span class="page-ref">(صفحة 73)</span></h2>
+        <p>
+            تستخدم المنظمات أنواعًا متعددة من نظم المعلومات لتلبية احتياجاتها المختلفة. لا يوجد نظام واحد يناسب جميع الأغراض. يعتمد اختيار النظام المناسب على عدة عوامل، أهمها المستوى الإداري الذي يخدمه النظام والوظيفة الإدارية التي يدعمها.
+        </p>
+
+        <h4>تصنيف النظم حسب المستويات الإدارية:</h4>
+        <p>
+            يمكن تقسيم الهيكل التنظيمي النموذجي إلى عدة مستويات إدارية، ولكل مستوى احتياجات معلوماتية وقرارات مختلفة. <strong>الشكل (3-4) <span class="figure-ref">(صفحة 73)</span></strong> يوضح هذه المستويات وعلاقتها بنظم المعلومات:
+        </p>
+        <div class="highlight">
+            <p><strong>المستويات الإدارية الرئيسية في المنظمة:</strong></p>
+            <ul>
+                <li>
+                    <strong>المستوى التشغيلي (Operational Level):</strong>
+                    <ul>
+                        <li><strong>من هم:</strong> يشمل المديرين في الخطوط الأمامية (مثل مشرفي العمال، رؤساء الأقسام الصغيرة) والموظفين التشغيليين (مثل الكتبة، عمال خط الإنتاج، موظفي خدمة العملاء).</li>
+                        <li><strong>طبيعة عملهم:</strong> يتعاملون مع الأنشطة اليومية الروتينية والمتكررة. قراراتهم غالبًا ما تكون منظمة ومبرمجة مسبقًا بناءً على قواعد وإجراءات محددة.</li>
+                        <li><strong>احتياجاتهم المعلوماتية:</strong> يحتاجون إلى معلومات مفصلة، دقيقة، وفورية حول المعاملات والأحداث الجارية.</li>
+                        <li><strong>أفقهم الزمني:</strong> قصير جدًا (يومي، أسبوعي).</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>المستوى المعرفي (Knowledge Level):</strong>
+                    <ul>
+                        <li><strong>من هم:</strong> يشمل العاملين في مجال المعرفة (Knowledge Workers) وعمال البيانات (Data Workers).
+                            <ul>
+                                <li><strong>العاملون في مجال المعرفة:</strong> هم مهنيون متعلمون تعليمًا عاليًا (مثل المهندسين، الأطباء، العلماء، المحامين، الباحثين) يقومون بإنشاء وتطبيق المعرفة الجديدة في المنظمة.</li>
+                                <li><strong>عمال البيانات:</strong> هم موظفون (مثل السكرتارية، المحاسبين المبتدئين، محللي البيانات) يتعاملون بشكل أساسي مع معالجة وتوزيع المعلومات والوثائق.</li>
+                            </ul>
+                        </li>
+                        <li><strong>طبيعة عملهم:</strong> يركز العاملون في مجال المعرفة على الابتكار وحل المشكلات المعقدة. يركز عمال البيانات على كفاءة معالجة المعلومات.</li>
+                        <li><strong>احتياجاتهم المعلوماتية:</strong> يحتاج العاملون في مجال المعرفة إلى الوصول إلى قواعد البيانات الخارجية والداخلية، وأدوات التحليل المتقدمة. يحتاج عمال البيانات إلى أدوات مكتبية فعالة.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>المستوى الإداري (Management Level) أو الإدارة الوسطى:</strong>
+                    <ul>
+                        <li><strong>من هم:</strong> يشمل مديري الإدارات والأقسام (مثل مدير التسويق، مدير الإنتاج، مدير الموارد البشرية).</li>
+                        <li><strong>طبيعة عملهم:</strong> مسؤولون عن تنفيذ الخطط والسياسات التي تضعها الإدارة العليا. يراقبون أداء المستوى التشغيلي ويتخذون قرارات تكتيكية. قراراتهم شبه منظمة (جزء منها روتيني وجزء يتطلب الحكم الشخصي).</li>
+                        <li><strong>احتياجاتهم المعلوماتية:</strong> يحتاجون إلى معلومات ملخصة وتقارير دورية عن الأداء، بالإضافة إلى أدوات تحليل لمساعدتهم في اتخاذ القرارات.</li>
+                        <li><strong>أفقهم الزمني:</strong> متوسط (شهري، ربع سنوي، سنوي).</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>المستوى الاستراتيجي (Strategic Level) أو الإدارة العليا:</strong>
+                    <ul>
+                        <li><strong>من هم:</strong> يشمل كبار المسؤولين التنفيذيين (مثل الرئيس التنفيذي CEO، المدير العام، نواب الرئيس).</li>
+                        <li><strong>طبيعة عملهم:</strong> مسؤولون عن تحديد رؤية المنظمة ورسالتها وأهدافها طويلة الأجل. يتخذون قرارات استراتيجية غير منظمة وتتعلق بمستقبل المنظمة ككل، وتأثير البيئة الخارجية عليها.</li>
+                        <li><strong>احتياجاتهم المعلوماتية:</strong> يحتاجون إلى معلومات ملخصة بشكل كبير، وتوقعات مستقبلية، ومعلومات عن البيئة الخارجية (المنافسين، السوق، الاتجاهات الاقتصادية والتكنولوجية).</li>
+                        <li><strong>أفقهم الزمني:</strong> طويل (عدة سنوات).</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <p>
+            تخدم أربعة أنواع رئيسية من نظم المعلومات هذه المستويات المختلفة <span class="page-ref">(كما ذكر في صفحة 74)</span>، وسيتم شرح كل منها بالتفصيل:
+        </p>
+    ```
+
+**الجزء الثاني: HTML (من شرح أنواع نظم المعلومات حتى نهاية شرح نظم المعلومات لربط المؤسسة)**
+
+```html
+        <ol>
+            <li>
+                <h3>1. نظم معالجة المعاملات (Transaction Processing Systems - TPS) <span class="page-ref">(صفحة 77)</span></h3>
+                <div class="highlight">
+                    <p><strong>الغرض الأساسي:</strong> تسجيل ومعالجة البيانات الناتجة عن المعاملات التجارية الروتينية اليومية اللازمة لإدارة الأعمال.</p>
+                </div>
+                <ul>
+                    <li><strong>المستوى الذي تخدمه:</strong> المستوى التشغيلي. هذه النظم هي عصب العمليات اليومية.</li>
+                    <li><strong>المستخدمون الرئيسيون:</strong> الموظفون في الخطوط الأمامية (مثل أمناء الصندوق، موظفي إدخال البيانات، موظفي خدمة العملاء) والمديرون التشغيليون لمراقبة حالة العمليات الداخلية وعلاقات الشركة مع البيئة الخارجية.</li>
+                    <li><strong>طبيعة البيانات:</strong> بيانات مفصلة جدًا عن المعاملات الفردية (مثل تفاصيل كل عملية بيع، كل إيداع بنكي، كل طلب شراء).</li>
+                    <li><strong>أمثلة على المعاملات التي تعالجها:</strong>
+                        <ul>
+                            <li>إدخال أوامر المبيعات.</li>
+                            <li>حجوزات الفنادق أو الطيران.</li>
+                            <li>كشوف المرتبات (Payroll) <span class="figure-ref">(الشكل 3-6، صفحة 77 يوضح نظام الرواتب كمثال على TPS)</span>: يتضمن إدخال ساعات عمل الموظفين، حساب الأجور الإجمالية، خصم الضرائب والاستقطاعات، وإصدار شيكات الرواتب أو تحويلها للبنوك.</li>
+                            <li>حفظ سجلات الموظفين.</li>
+                            <li>الشحن والاستلام.</li>
+                        </ul>
+                    </li>
+                    <li><strong>الأهمية:</strong>
+                        <ul>
+                            <li>نظم TPS حيوية جدًا لأعمال المنظمة. إذا توقف نظام TPS عن العمل، فقد تتوقف المنظمة بأكملها عن العمل (تخيل توقف نظام الحجز في شركة طيران أو نظام نقاط البيع في سوبر ماركت كبير).</li>
+                            <li>تعتبر المصدر الرئيسي للبيانات للأنواع الأخرى من النظم (مثل MIS و DSS)، حيث تقوم هذه النظم بتحليل وتلخيص البيانات التي يجمعها TPS.</li>
+                        </ul>
+                    </li>
+                    <li><strong>خصائصها:</strong>
+                        <ul>
+                            <li>تعالج كميات كبيرة من البيانات.</li>
+                            <li>المدخلات والمخرجات منظمة ومحددة مسبقًا.</li>
+                            <li>يجب أن تكون موثوقة ودقيقة وسريعة.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <h3>2. نظم العمل المعرفي والمكتب (Knowledge Work Systems - KWS & Office Systems - OAS) <span class="page-ref">(صفحة 78)</span></h3>
+                <p>
+                    هذه النظم تخدم بشكل أساسي المستوى المعرفي في المنظمة، وتدعم العاملين في مجال المعرفة وعمال البيانات.
+                </p>
+                <ul>
+                    <li>
+                        <h4>أ. نظم العمل المعرفي (Knowledge Work Systems - KWS):</h4>
+                        <div class="highlight">
+                            <p><strong>الغرض الأساسي:</strong> مساعدة العاملين في مجال المعرفة على اكتشاف وتنظيم ودمج المعرفة الجديدة في المنظمة، وتسهيل إنشاء المنتجات والخدمات الجديدة أو تحسين القائمة منها.</p>
+                        </div>
+                        <ul>
+                            <li><strong>المستخدمون الرئيسيون:</strong> المهندسون، العلماء، الأطباء، المحامون، المصممون، الباحثون.</li>
+                            <li><strong>الأهمية:</strong> تساهم في الابتكار وتحسين جودة القرارات والمنتجات.</li>
+                            <li><strong>أمثلة:</strong>
+                                <ul>
+                                    <li><strong>نظم التصميم بمساعدة الحاسوب (CAD - Computer-Aided Design):</strong> يستخدمها المهندسون والمصممون لإنشاء نماذج رقمية للمنتجات (مثل السيارات، المباني، الأجهزة الإلكترونية)، مما يسهل عملية التصميم والتعديل والاختبار قبل الإنتاج الفعلي.</li>
+                                    <li><strong>نظم التصنيع بمساعدة الحاسوب (CAM - Computer-Aided Manufacturing):</strong> تستخدم للتحكم في الآلات والمعدات في عملية الإنتاج بناءً على التصاميم المنشأة بواسطة CAD.</li>
+                                    <li><strong>محطات العمل الهندسية (Engineering Workstations):</strong> أجهزة كمبيوتر قوية مزودة ببرامج متخصصة للتحليل والمحاكاة.</li>
+                                    <li><strong>نظم الواقع الافتراضي (Virtual Reality Systems):</strong> تستخدم لإنشاء بيئات محاكاة تفاعلية (مثل محاكاة العمليات الجراحية للأطباء، أو محاكاة تصميم المباني للمهندسين المعماريين).</li>
+                                    <li><strong>نظم النمذجة المالية (Financial Modeling Systems):</strong> يستخدمها المحللون الماليون لإنشاء نماذج تتوقع أداء الاستثمارات أو الشركات.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h4>ب. نظم أتمتة المكاتب (Office Automation Systems - OAS) أو نظم المكتب:</h4>
+                        <div class="highlight">
+                            <p><strong>الغرض الأساسي:</strong> زيادة إنتاجية عمال البيانات من خلال أتمتة المهام المكتبية الروتينية وتسهيل تدفق المعلومات داخل المكتب ومع الأطراف الخارجية.</p>
+                        </div>
+                        <ul>
+                            <li><strong>المستخدمون الرئيسيون:</strong> السكرتارية، الكتبة، المساعدون الإداريون، وأي موظف يتعامل مع الوثائق والاتصالات المكتبية.</li>
+                            <li><strong>الأهمية:</strong> تحسين كفاءة العمل المكتبي، تسهيل الاتصالات، إدارة الوثائق.</li>
+                            <li><strong>أمثلة:</strong>
+                                <ul>
+                                    <li><strong>معالجات النصوص (Word Processing):</strong> مثل Microsoft Word، لإنشاء وتحرير وتنسيق المستندات النصية.</li>
+                                    <li><strong>جداول البيانات (Spreadsheets):</strong> مثل Microsoft Excel، لتحليل البيانات، إجراء الحسابات، وإنشاء الرسوم البيانية.</li>
+                                    <li><strong>برامج العروض التقديمية (Presentation Software):</strong> مثل Microsoft PowerPoint، لإنشاء عروض تقديمية مرئية.</li>
+                                    <li><strong>النشر المكتبي (Desktop Publishing):</strong> لإنشاء مستندات ذات تصميم احترافي مثل الكتيبات والنشرات الإخبارية.</li>
+                                    <li><strong>البريد الإلكتروني (Email):</strong> لتسهيل الاتصالات الكتابية السريعة داخل وخارج المنظمة.</li>
+                                    <li><strong>التقويمات الإلكترونية وجدولة المواعيد (Electronic Calendars and Scheduling):</strong> لتنظيم الاجتماعات والمواعيد.</li>
+                                    <li><strong>أنظمة إدارة الوثائق (Document Management Systems):</strong> لتخزين وتنظيم واسترجاع الوثائق الإلكترونية.</li>
+                                    <li><strong>مؤتمرات الفيديو والصوت (Videoconferencing and Audioconferencing):</strong> لتسهيل الاجتماعات عن بعد.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <h3>3. نظم المعلومات الإدارية (Management Information Systems - MIS) <span class="page-ref">(صفحة 79)</span></h3>
+                <div class="highlight">
+                    <p><strong>الغرض الأساسي:</strong> تزويد المديرين في الإدارة الوسطى بتقارير دورية وملخصات عن الأداء الحالي للمنظمة، ومساعدتهم في المراقبة والتحكم واتخاذ القرارات الروتينية وشبه المنظمة.</p>
+                </div>
+                <ul>
+                    <li><strong>المستوى الذي تخدمه:</strong> المستوى الإداري (الإدارة الوسطى).</li>
+                    <li><strong>المستخدمون الرئيسيون:</strong> مديرو الأقسام والوحدات الوظيفية.</li>
+                    <li><strong>مصدر البيانات:</strong> تعتمد نظم MIS بشكل كبير على البيانات التي تم جمعها ومعالجتها بواسطة نظم معالجة المعاملات (TPS). تقوم MIS بتلخيص وتجميع هذه البيانات التفصيلية.</li>
+                    <li><strong>طبيعة المخرجات:</strong>
+                        <ul>
+                            <li><strong>تقارير دورية (Scheduled Reports):</strong> يتم إنتاجها بشكل منتظم (يومي، أسبوعي، شهري) وتقدم ملخصًا للأداء في فترة معينة (مثال: تقرير المبيعات الشهري لكل منطقة).</li>
+                            <li><strong>تقارير حسب الطلب (Ad-hoc Reports):</strong> يمكن للمديرين طلب تقارير محددة عند الحاجة.</li>
+                            <li><strong>تقارير الاستثناءات (Exception Reports):</strong> تسلط الضوء فقط على الحالات التي تنحرف عن المعدلات أو التوقعات المحددة مسبقًا (مثال: تقرير بالمنتجات التي انخفضت مبيعاتها بأكثر من 10% عن الشهر الماضي). هذا يساعد المديرين على تركيز انتباههم على المشكلات التي تحتاج إلى تدخل.</li>
+                        </ul>
+                        <p><strong>الشكل (3-7) <span class="figure-ref">(صفحة 80)</span></strong> يوضح كيف تستخدم نظم المعلومات الإدارية (MIS) بيانات من نظم معالجة المعاملات (TPS) كمدخلات لإنتاج تقارير دورية تساعد في اتخاذ القرارات.</p>
+                    </li>
+                    <li><strong>قدرات التحليل:</strong> عادة ما تكون قدرات التحليل في نظم MIS محدودة وتعتمد على نماذج بسيطة وإجراءات قياسية. لا توفر مرونة تحليلية كبيرة مثل نظم دعم القرار.</li>
+                    <li><strong>الأهمية:</strong> تساعد المديرين على فهم ما يحدث في المنظمة، مقارنة الأداء الفعلي بالخطط، وتحديد المشكلات والفرص.</li>
+                    <li><strong>مثال:</strong> نظام يقدم لمدير المبيعات تقريرًا أسبوعيًا عن مبيعات كل مندوب مقارنة بالهدف المحدد له.</li>
+                </ul>
+            </li>
+
+            <li>
+                <h3>4. نظم دعم القرارات (Decision Support Systems - DSS) <span class="page-ref">(صفحة 80)</span></h3>
+                <div class="highlight">
+                    <p><strong>الغرض الأساسي:</strong> مساعدة المديرين (عادة في الإدارة الوسطى، ولكن قد يستخدمها محللون أو حتى مديرون تنفيذيون) في اتخاذ القرارات غير الروتينية أو شبه المنظمة التي تتطلب حكمًا وتقييمًا وتحليلاً للبدائل.</p>
+                </div>
+                <ul>
+                    <li><strong>المستوى الذي تخدمه:</strong> المستوى الإداري، وأحيانًا المستوى الاستراتيجي.</li>
+                    <li><strong>المستخدمون الرئيسيون:</strong> المديرون، المحللون، المخططون.</li>
+                    <li><strong>طبيعة القرارات التي تدعمها:</strong> قرارات فريدة، سريعة التغير، ليست لها إجراءات محددة مسبقًا لحلها. (مثال: تحديد تأثير زيادة سعر منتج معين على المبيعات، اختيار أفضل موقع لفتح فرع جديد، تقييم جدوى إطلاق منتج جديد).</li>
+                    <li><strong>مصدر البيانات:</strong>
+                        <ul>
+                            <li>بيانات داخلية من نظم TPS و MIS (مثل بيانات المبيعات، تكاليف الإنتاج).</li>
+                            <li>بيانات خارجية (مثل أسعار المنافسين، اتجاهات السوق، البيانات الديموغرافية، أسعار الفائدة).</li>
+                        </ul>
+                    </li>
+                    <li><strong>قدرات التحليل:</strong>
+                        <ul>
+                            <li><strong>التفاعلية (Interactivity):</strong> يمكن للمستخدمين التفاعل مع النظام بسهولة، وتغيير الافتراضات، واستكشاف سيناريوهات مختلفة.</li>
+                            <li><strong>استخدام النماذج (Model-Driven DSS):</strong> تحتوي على نماذج رياضية أو إحصائية أو مالية مدمجة (مثل نماذج التحسين، نماذج المحاكاة، نماذج التنبؤ).</li>
+                            <li><strong>تحليل "ماذا لو" (What-if Analysis):</strong> يسمح للمستخدم بتغيير قيمة متغير واحد أو أكثر ورؤية تأثير ذلك على النتائج (مثال: ماذا لو زادت تكلفة المواد الخام بنسبة 5%؟ كيف سيؤثر ذلك على ربحية المنتج؟).</li>
+                            <li><strong>تحليل الحساسية (Sensitivity Analysis):</strong> يدرس مدى تأثير تغيير متغير واحد على متغيرات أخرى.</li>
+                            <li><strong>تحليل البحث عن الهدف (Goal-Seeking Analysis):</strong> يسمح للمستخدم بتحديد هدف معين (مثل مستوى معين من الربح) ويقوم النظام بتحديد قيم المدخلات اللازمة لتحقيق هذا الهدف.</li>
+                            <li><strong>التمثيل البياني (Graphical Output):</strong> غالبًا ما تقدم المخرجات في شكل رسوم بيانية ومخططات لتسهيل الفهم.
+                                <p><strong>الشكل (3-8) <span class="figure-ref">(صفحة 81)</span></strong> يوضح مثالاً لواجهة برنامج Microsoft Excel واستخدامه في الجداول المحورية (Pivot Tables) كأداة لدعم القرار، مما يتيح تحليل البيانات من زوايا متعددة واستكشاف الأنماط.</p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>الأهمية:</strong> تمكن المديرين من اتخاذ قرارات أكثر استنارة من خلال توفير أدوات تحليل قوية لاستكشاف البدائل وتقييم عواقبها.</li>
+                </ul>
+            </li>
+
+            <li>
+                <h3>5. نظم دعم الإدارة التنفيذية (Executive Support Systems - ESS) أو نظم دعم المديرين التنفيذيين (Executive Information Systems - EIS) <span class="page-ref">(صفحة 81)</span></h3>
+                <div class="highlight">
+                    <p><strong>الغرض الأساسي:</strong> تزويد الإدارة العليا (المديرين التنفيذيين) بمعلومات سهلة الفهم وسريعة الوصول لمساعدتهم في اتخاذ القرارات الاستراتيجية غير الروتينية التي تؤثر على المنظمة بأكملها على المدى الطويل.</p>
+                </div>
+                <ul>
+                    <li><strong>المستوى الذي تخدمه:</strong> المستوى الاستراتيجي (الإدارة العليا).</li>
+                    <li><strong>المستخدمون الرئيسيون:</strong> كبار المديرين التنفيذيين (CEO, CFO, COO, نواب الرئيس).</li>
+                    <li><strong>طبيعة القرارات التي تدعمها:</strong> قرارات استراتيجية تتعلق بتوجه المنظمة المستقبلي، مثل:
+                        <ul>
+                            <li>هل يجب دخول أسواق جديدة؟</li>
+                            <li>ما هي المنتجات أو الخدمات التي يجب تطويرها أو التوقف عنها؟</li>
+                            <li>كيف يجب أن تستجيب المنظمة لتحركات المنافسين أو التغيرات في البيئة الاقتصادية؟</li>
+                            <li>ما هي مستويات العمل المطلوبة للسنوات الخمس القادمة؟ وكيف سيتم تطوير منتجات في تلك الفترة؟ <span class="page-ref">(مذكورة في صفحة 82)</span></li>
+                        </ul>
+                    </li>
+                    <li><strong>مصدر البيانات:</strong>
+                        <ul>
+                            <li><strong>بيانات داخلية:</strong> ملخصات من نظم MIS و DSS (مثل مؤشرات الأداء الرئيسية KPIs).</li>
+                            <li><strong>بيانات خارجية:</strong> معلومات عن المنافسين، اتجاهات الصناعة، الأخبار الاقتصادية والسياسية، أسعار الأسهم، تقارير المحللين، بيانات من قواعد بيانات خارجية.</li>
+                        </ul>
+                    </li>
+                    <li><strong>خصائصها:</strong>
+                        <ul>
+                            <li><strong>سهولة الاستخدام:</strong> مصممة لتكون سهلة الاستخدام للغاية، غالبًا بواجهات رسومية تعمل باللمس أو الفأرة، ولا تتطلب معرفة تقنية متقدمة.</li>
+                            <li><strong>التركيز على المعلومات الهامة:</strong> تقدم ملخصات ومؤشرات أداء رئيسية بدلاً من التفاصيل الدقيقة.</li>
+                            <li><strong>المرونة:</strong> تسمح للمديرين التنفيذيين "بالتنقيب" (Drill Down) في البيانات للحصول على مزيد من التفاصيل عند الحاجة.</li>
+                            <li><strong>التمثيل البياني المتقدم:</strong> تستخدم الرسوم البيانية والمخططات ولوحات المعلومات (Dashboards) لعرض المعلومات بشكل مرئي وسهل الفهم.
+                                <p><strong>الشكل (3-9) <span class="figure-ref">(صفحة 83)</span></strong> يوضح مثالاً لواجهة مستخدم لنظام دعم الإدارة التنفيذية، تظهر مؤشرات أداء رئيسية (KPIs) في شكل رسوم بيانية ومقاييس.</p>
+                                <p><strong>لوحات المعلومات الرقمية (Digital Dashboards):</strong> تعرض رسومًا بيانية ومخططات لمؤشرات الأداء الرئيسية للمنظمة على شاشة واحدة، مما يوفر نظرة عامة سريعة وشاملة عن حالة الأعمال. <span class="page-ref">(مذكورة في صفحة 82)</span></p>
+                            </li>
+                            <li><strong>دعم الاتصالات:</strong> قد تتضمن أدوات لدعم الاتصالات وتبادل المعلومات بين كبار المديرين.</li>
+                        </ul>
+                    </li>
+                    <li><strong>الأهمية:</strong> تساعد الإدارة العليا على مراقبة أداء المنظمة، تحديد الاتجاهات الاستراتيجية، واتخاذ قرارات مستنيرة تؤثر على مستقبل المنظمة.</li>
+                </ul>
+            </li>
+        </ol>
+        <hr class="section-divider">
+
+        <h2>3.2.2 نظم المعلومات من منظور وظيفي <span class="page-ref">(صفحة 83)</span></h2>
+        <p>
+            بالإضافة إلى تصنيف نظم المعلومات حسب المستوى الإداري الذي تخدمه، يمكن أيضًا تصنيفها بناءً على الوظيفة الإدارية أو القسم المحدد الذي تدعمه داخل المنظمة. غالبًا ما تكون هذه النظم مصممة خصيصًا لتلبية احتياجات قسم معين.
+        </p>
+        <p>
+            سنستعرض أمثلة على نظم المعلومات التي تخدم الوظائف الرئيسية التالية:
+        </p>
+
+        <ul>
+            <li>
+                <h3>1. نظم المبيعات والتسويق (Sales and Marketing Systems) <span class="page-ref">(صفحة 83)</span></h3>
+                <div class="highlight">
+                    <p><strong>الغرض الأساسي:</strong> مساعدة المنظمة في تحديد وفهم احتياجات العملاء، تطوير المنتجات والخدمات التي تلبي هذه الاحتياجات، الترويج لهذه المنتجات والخدمات، بيعها، وتقديم الدعم اللازم للعملاء.</p>
+                </div>
+                <p>
+                    <strong>الجدول (3-2) <span class="figure-ref">(صفحة 84)</span></strong> يعرض أمثلة لهذه النظم عبر المستويات الإدارية المختلفة:
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>المستوى الإداري</th>
+                            <th>مثال على نظام المبيعات والتسويق</th>
+                            <th>شرح تفصيلي إضافي</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>التشغيلي</strong></td>
+                            <td>نظام معالجة الطلبات (Order Processing)</td>
+                            <td>يسجل طلبات العملاء، يتتبع حالة الطلبات، يتحقق من توفر المنتجات، ينسق مع الشحن، ويصدر الفواتير. يضمن دقة وسرعة تلبية طلبات العملاء.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>المعرفي</strong></td>
+                            <td>نظام تحليل السوق (Market Analysis)</td>
+                            <td>يجمع ويحلل بيانات عن اتجاهات السوق، سلوك المستهلكين، أنشطة المنافسين، والتركيبة السكانية. يساعد في تحديد الشرائح السوقية المستهدفة وفهم ديناميكيات السوق.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الإداري</strong></td>
+                            <td>نظام تحليل الأسعار (Pricing Analysis)</td>
+                            <td>يساعد مديري التسويق في تحديد أسعار المنتجات والخدمات بناءً على عوامل مثل التكلفة، الطلب، أسعار المنافسين، والقيمة المدركة من قبل العميل. قد يستخدم نماذج "ماذا لو" لتقييم تأثير تغييرات الأسعار.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الاستراتيجي</strong></td>
+                            <td>نظام التنبؤ باتجاهات المبيعات (Sales Trend Forecasting)</td>
+                            <td>يستخدم بيانات المبيعات التاريخية، واتجاهات السوق، والعوامل الاقتصادية للتنبؤ بمستويات المبيعات المستقبلية على المدى الطويل. يساعد الإدارة العليا في التخطيط الاستراتيجي وتخصيص الموارد.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+
+            <li>
+                <h3>2. نظم التصنيع والإنتاج (Manufacturing and Production Systems) <span class="page-ref">(صفحة 84)</span></h3>
+                <div class="highlight">
+                    <p><strong>الغرض الأساسي:</strong> مساعدة المنظمة في تخطيط وتطوير وإنتاج السلع والخدمات بكفاءة وفعالية، والتحكم في تدفق عملية الإنتاج وجودتها.</p>
+                </div>
+                <p>
+                    <strong>الجدول (3-3) <span class="figure-ref">(صفحة 85)</span></strong> يعرض أمثلة لهذه النظم:
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>المستوى الإداري</th>
+                            <th>مثال على نظام التصنيع والإنتاج</th>
+                            <th>شرح تفصيلي إضافي</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>التشغيلي</strong></td>
+                            <td>نظام التحكم بالآلات (Machine Control)</td>
+                            <td>يراقب ويتحكم في تشغيل الآلات والمعدات في خط الإنتاج (مثل الروبوتات الصناعية، آلات التحكم الرقمي CNC). يهدف إلى أتمتة العمليات وتحسين الدقة والكفاءة.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>المعرفي</strong></td>
+                            <td>نظام التصميم بمساعدة الحاسوب (CAD - Computer-Aided Design)</td>
+                            <td>(تم شرحه سابقًا ضمن KWS) يساعد المهندسين والمصممين في إنشاء نماذج رقمية مفصلة للمنتجات.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الإداري</strong></td>
+                            <td>نظام تخطيط الإنتاج (Production Planning)</td>
+                            <td>يساعد مديري الإنتاج في تحديد مستويات الإنتاج المطلوبة، جدولة أوامر العمل، تخصيص الموارد (المواد، العمالة، الآلات)، وإدارة المخزون. يهدف إلى موازنة الطاقة الإنتاجية مع الطلب.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الاستراتيجي</strong></td>
+                            <td>نظام تحديد مواقع المرافق (Facilities Location)</td>
+                            <td>يساعد الإدارة العليا في اتخاذ قرارات استراتيجية حول مكان بناء المصانع الجديدة أو المستودعات أو مراكز التوزيع. يأخذ في الاعتبار عوامل مثل تكاليف النقل، توفر العمالة، القرب من الأسواق والموردين.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>
+                    <strong>الشكل (3-10) <span class="figure-ref">(صفحة 86)</span></strong> يوضح مخططًا لنظام إدارة المخازن، وهو نظام حيوي في التصنيع والإنتاج. يتتبع هذا النظام مستويات المخزون من المواد الخام والمنتجات النهائية، ويدير عمليات الاستلام والتخزين والصرف.
+                </p>
+            </li>
+
+            <li>
+                <h3>3. نظم التمويل والمحاسبة (Finance and Accounting Systems) <span class="page-ref">(صفحة 86)</span></h3>
+                <div class="highlight">
+                    <p><strong>الغرض الأساسي:</strong> مساعدة المنظمة في إدارة أصولها المالية، تتبع تدفق الأموال، وإعداد التقارير المالية التي تعكس أدائها المالي وامتثالها للمعايير المحاسبية والقانونية.</p>
+                </div>
+                <p>
+                    <strong>الجدول (3-4) <span class="figure-ref">(صفحة 87)</span></strong> يعرض أمثلة لهذه النظم:
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>المستوى الإداري</th>
+                            <th>مثال على نظام التمويل والمحاسبة</th>
+                            <th>شرح تفصيلي إضافي</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>التشغيلي</strong></td>
+                            <td>نظام الذمم المدينة (Accounts Receivable)</td>
+                            <td>يتتبع الأموال المستحقة للمنظمة من عملائها (الفواتير غير المدفوعة)، ويدير عمليات التحصيل.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>المعرفي</strong></td>
+                            <td>نظام تحليل المحفظة (Portfolio Analysis)</td>
+                            <td>يستخدمه المحللون الماليون (خاصة في الشركات الاستثمارية) لتقييم أداء الاستثمارات المختلفة في المحفظة، وإدارة المخاطر، وتحديد فرص استثمارية جديدة.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الإداري</strong></td>
+                            <td>نظام الميزانية (Budgeting)</td>
+                            <td>يساعد المديرين في إعداد الميزانيات التقديرية للإيرادات والمصروفات، ومراقبة الأداء الفعلي مقارنة بالميزانية، وتحديد الانحرافات.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الاستراتيجي</strong></td>
+                            <td>نظام تخطيط الأرباح (Profit Planning)</td>
+                            <td>يساعد الإدارة العليا في تحديد أهداف الربحية طويلة الأجل، وتطوير استراتيجيات لتحقيق هذه الأهداف. قد يتضمن نماذج للتنبؤ بالإيرادات والتكاليف والأرباح في سيناريوهات مختلفة.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </li>
+
+            <li>
+                <h3>4. نظم الموارد البشرية (Human Resources Systems) <span class="page-ref">(صفحة 87)</span></h3>
+                <div class="highlight">
+                    <p><strong>الغرض الأساسي:</strong> مساعدة المنظمة في إدارة رأس مالها البشري، بما في ذلك جذب وتوظيف وتدريب وتقييم وتحفيز والاحتفاظ بالموظفين.</p>
+                </div>
+                <p>
+                    <strong>الجدول (3-6) <span class="figure-ref">(صفحة 88)</span></strong> (يفترض الكتاب أنه الجدول (3-5) بناءً على التسلسل ولكنه مرقم 3-6) يعرض أمثلة لهذه النظم:
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>المستوى الإداري</th>
+                            <th>مثال على نظام الموارد البشرية</th>
+                            <th>شرح تفصيلي إضافي</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>التشغيلي</strong></td>
+                            <td>نظام التدريب والتطوير (Training and Development)</td>
+                            <td>يتتبع احتياجات الموظفين التدريبية، ويسجل الدورات التدريبية التي حضروها، ويقيم فعالية البرامج التدريبية.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>المعرفي</strong></td>
+                            <td>نظام تخطيط المسار الوظيفي (Career Pathing)</td>
+                            <td>يساعد الموظفين والإدارة في تخطيط مسارات التطور الوظيفي للموظفين داخل المنظمة، وتحديد المهارات والخبرات اللازمة للترقي.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الإداري</strong></td>
+                            <td>نظام تحليل التعويضات (Compensation Analysis)</td>
+                            <td>يساعد مديري الموارد البشرية في تصميم وإدارة هياكل الرواتب والمزايا، وضمان أنها تنافسية وعادلة، ومتوافقة مع القوانين.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>الاستراتيجي</strong></td>
+                            <td>نظام تخطيط الموارد البشرية (Human Resources Planning)</td>
+                            <td>يساعد الإدارة العليا في التنبؤ باحتياجات المنظمة المستقبلية من القوى العاملة (العدد، المهارات، التخصصات) بناءً على الخطط الاستراتيجية للمنظمة.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>
+                    <strong>الشكل (3-7) <span class="figure-ref">(صفحة 88)</span></strong> (ملاحظة: هذا الشكل مكرر استخدامه للإشارة إلى TPS بشكل عام في صفحة 77، وهنا قد يشير إلى تطبيق TPS في الموارد البشرية مثل نظام الرواتب الذي تم ذكره سابقًا). يوضح نظام TPS للموارد البشرية كيف يتم معالجة بيانات الموظفين الأساسية (مثل الاسم، الرقم الوظيفي، معلومات الاتصال)، وبيانات الرواتب، وسجلات الحضور والانصراف، وبيانات الإجازات.
+                </p>
+            </li>
+        </ul>
+        <div class="note">
+            <p><strong>ملاحظة هامة:</strong> من المهم إدراك أن هناك تداخلًا كبيرًا بين تصنيف النظم حسب المستوى الإداري وتصنيفها حسب الوظيفة. فنظام المبيعات التشغيلي (مثل معالجة الطلبات) هو في جوهره نظام معالجة معاملات (TPS). وبالمثل، فإن نظام تخطيط الأرباح (الاستراتيجي) في قسم المالية يمكن اعتباره نوعًا من نظم دعم الإدارة التنفيذية (ESS) أو نظم دعم القرار (DSS) المتقدمة. التصنيفات هي أدوات للفهم والتحليل، ولكن في الواقع العملي، قد تخدم النظم أغراضًا متعددة.</p>
+        </div>
+        <hr class="section-divider">
+
+        <h2>3.2.3 نظم المعلومات لربط المؤسسة (Enterprise Applications) <span class="page-ref">(صفحة 89)</span></h2>
+        <p>
+            في الماضي، كانت العديد من المنظمات تعاني من مشكلة "صوامع المعلومات" (Information Silos)، حيث تكون بيانات كل قسم وظيفي معزولة في أنظمته الخاصة، مما يجعل من الصعب تبادل المعلومات والتنسيق عبر المنظمة. لمواجهة هذا التحدي، ظهرت "تطبيقات المؤسسة" أو "النظم المؤسسية الشاملة".
+        </p>
+        <div class="highlight">
+            <p><strong>تطبيقات المؤسسة (Enterprise Applications):</strong> هي نظم معلومات واسعة النطاق مصممة لدمج وتنسيق العمليات والبيانات عبر جميع وظائف ومستويات المنظمة. تهدف إلى توفير رؤية موحدة وشاملة لأعمال المنظمة، وتحسين الكفاءة، وتعزيز التعاون، وتمكين اتخاذ قرارات أفضل على مستوى المؤسسة ككل.</p>
+        </div>
+        <p>
+            أربعة أنواع رئيسية من تطبيقات المؤسسة هي:
+        </p>
+        <ol>
+            <li>
+                <h3>1. نظم تخطيط موارد المؤسسة (Enterprise Resource Planning - ERP) <span class="page-ref">(صفحة 89)</span></h3>
+                <div class="highlight">
+                    <p><strong>الغرض الأساسي:</strong> دمج جميع العمليات التجارية الرئيسية في المنظمة (مثل المالية، الموارد البشرية، التصنيع، المبيعات، سلسلة التوريد) في نظام برمجي واحد متكامل يعمل على قاعدة بيانات مركزية واحدة.</p>
+                </div>
+                <ul>
+                    <li><strong>كيف تعمل:</strong> عندما يتم إدخال معلومة في جزء واحد من النظام (مثلاً، أمر مبيعات جديد)، تصبح هذه المعلومة متاحة فورًا لجميع الأجزاء الأخرى من النظام التي تحتاجها (مثل قسم الإنتاج لتصنيع المنتج، وقسم المحاسبة لإصدار الفاتورة). هذا يلغي الحاجة إلى إعادة إدخال البيانات ويقلل من الأخطاء والتناقضات.
+                        <p><strong>الشكل (3-8) <span class="figure-ref">(صفحة 90)</span></strong> يوضح كيف يجمع نظام ERP البيانات من مختلف وظائف الأعمال (المالية، الموارد البشرية، التصنيع، المبيعات والتسويق) في قاعدة بيانات مركزية مشتركة، مما يتيح تدفق المعلومات بسلاسة بين هذه الوظائف.</p>
+                    </li>
+                    <li><strong>العمليات التي تدعمها:</strong>
+                        <p><strong>الجدول (3-10) <span class="figure-ref">(صفحة 91)</span></strong> يوضح أمثلة للعمليات التي تدعمها أنظمة المؤسسة (ERP هي المثال الأبرز):</p>
+                        <ul>
+                            <li><strong>عمليات التصنيع:</strong> تخطيط متطلبات المواد، جدولة الإنتاج، إدارة جودة المنتج.</li>
+                            <li><strong>العمليات المالية والمحاسبية:</strong> دفتر الأستاذ العام، إدارة الذمم المدينة والدائنة، إدارة النقد، إعداد التقارير المالية.</li>
+                            <li><strong>عمليات المبيعات والتسويق:</strong> معالجة أوامر العملاء، إدارة علاقات العملاء (جزئيًا)، إدارة الحملات التسويقية.</li>
+                            <li><strong>عمليات الموارد البشرية:</strong> إدارة الرواتب، إدارة المزايا، تتبع الوقت والحضور، إدارة أداء الموظفين.</li>
+                        </ul>
+                    </li>
+                    <li><strong>الفوائد (Benefits):</strong>
+                        <p><strong>الجدول (3-11) <span class="figure-ref">(صفحة 92)</span></strong> يوضح بعض فوائد نظم تخطيط موارد المؤسسة:</p>
+                        <ul>
+                            <li><strong>الاستجابة السريعة لطلبات الزبائن للحصول على معلومات عن المنتجات:</strong> لأن جميع المعلومات (توفر المنتج، حالة الطلب) موجودة في نظام واحد.</li>
+                            <li><strong>يصبح قسم التصنيع أكثر اطلاعًا حول إنتاج ما يطلبه الزبائن:</strong> لأن أوامر المبيعات تتدفق مباشرة إلى نظام تخطيط الإنتاج.</li>
+                            <li><strong>شراء المكونات أو المواد الخام بالكميات الصحيحة لتلبية طلبات العملاء الفعلية.</strong></li>
+                            <li><strong>تنظيم الإنتاج وتقليل الوقت الذي تكون فيه المكونات أو المنتجات تامة الصنع في المخزون.</strong></li>
+                            <li><strong>تشمل نظم تخطيط موارد المؤسسة أدوات تحليلية لاستخدام البيانات التي تم التقاطها من قبل النظام لتقييم الأداء التنظيمي العام.</strong></li>
+                            <li><strong>بيانات نظم تخطيط موارد المؤسسة لها تعاريف موحدة ومشتركة ومقبولة من قبل المنظمة بأكملها.</strong></li>
+                        </ul>
+                        <p>بشكل عام، تهدف نظم ERP إلى زيادة الكفاءة التشغيلية، توفير معلومات دقيقة وفي الوقت المناسب لاتخاذ القرارات، تحسين الرؤية والتحكم في العمليات، وتسهيل الامتثال للمعايير التنظيمية.</p>
+                    </li>
+                    <li><strong>التحديات:</strong> تطبيقات ERP غالبًا ما تكون معقدة ومكلفة وتتطلب تغييرات كبيرة في العمليات التنظيمية وثقافة العمل.</li>
+                </ul>
+            </li>
+
+            <li>
+                <h3>2. نظم إدارة سلسلة التوريد (Supply Chain Management - SCM) <span class="page-ref">(صفحة 92)</span></h3>
+                <div class="highlight">
+                    <p><strong>الغرض الأساسي:</strong> مساعدة المنظمات في إدارة علاقاتها مع مورديها، وشركات الشراء، والموزعين، وشركات الخدمات اللوجستية، بهدف تحسين تخطيط وتدفق السلع والخدمات والمعلومات عبر سلسلة التوريد بأكملها.</p>
+                </div>
+                <ul>
+                    <li><strong>سلسلة التوريد (Supply Chain):</strong> هي شبكة من المنظمات والعمليات التي تشارك في شراء المواد الخام، تحويلها إلى منتجات وسيطة ونهائية، وتوزيع هذه المنتجات على العملاء.
+                        <p><strong>الشكل (3-9) <span class="figure-ref">(صفحة 93)</span></strong> يوضح مكونات سلسلة التوريد الرئيسية:</p>
+                        <ul>
+                            <li><strong>المنبع (Upstream Supply Chain):</strong> يشمل موردي المنظمة (موردي المواد الخام، المكونات، الخدمات).</li>
+                            <li><strong>الداخلية (Internal Supply Chain):</strong> تشمل جميع العمليات داخل المنظمة لتحويل المدخلات إلى مخرجات (التصنيع، التجميع، التعبئة، التخزين).</li>
+                            <li><strong>المصب (Downstream Supply Chain):</strong> يشمل المنظمات والعمليات المسؤولة عن توزيع وتسليم المنتج للعميل النهائي (الموزعون، تجار التجزئة، شركات النقل).</li>
+                        </ul>
+                    </li>
+                    <li><strong>الهدف الرئيسي لنظم SCM:</strong> نقل الكمية الصحيحة من المنتج من المصدر إلى نقطة الاستهلاك في أقل وقت ممكن وبأقل تكلفة ممكنة، مع الحفاظ على مستوى الخدمة المطلوب.</li>
+                    <li><strong>كيف تعمل:</strong> توفر نظم SCM معلومات حول توفر المنتجات، مستويات المخزون، حالة الشحنات، وخطط الإنتاج والتوزيع لجميع المشاركين في سلسلة التوريد. هذا يمكنهم من اتخاذ قرارات منسقة.</li>
+                    <li><strong>الفوائد (Benefits):</strong>
+                        <p><strong>الجدول (3-12) <span class="figure-ref">(صفحة 94)</span></strong> يوضح بعض فوائد نظم إدارة سلسلة التوريد:</p>
+                        <ul>
+                            <li><strong>تساعد نظم المعلومات المشاركين في سلسلة التوريد في تقرير متى وماذا يجب إنتاجه وتخزينه ونقله.</strong></li>
+                            <li><strong>التواصل بسرعة بين المنظمات فيما يخص الطلبات.</strong></li>
+                            <li><strong>تتبع حالة الطلبات.</strong></li>
+                            <li><strong>مراقبة مستويات المخزون.</strong></li>
+                            <li><strong>خفض تكاليف المخزون والنقل والتخزين.</strong></li>
+                            <li><strong>تتبع الشحنات.</strong></li>
+                            <li><strong>وضع خطة للإنتاج تقوم على طلب الزبائن الفعلية.</strong></li>
+                            <li><strong>التواصل بسرعة بشأن التغييرات في تصميم المنتجات.</strong></li>
+                        </ul>
+                        <p>بشكل عام، تهدف إلى تقليل عدم اليقين (تأثير السوط Bullwhip Effect)، تحسين الرؤية عبر السلسلة، زيادة كفاءة العمليات اللوجستية، وتقليل التكاليف الإجمالية.</p>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <h3>3. نظم إدارة علاقات الزبائن (Customer Relationship Management - CRM) <span class="page-ref">(صفحة 94)</span></h3>
+                <div class="highlight">
+                    <p><strong>الغرض الأساسي:</strong> مساعدة المنظمات في إدارة جميع جوانب علاقاتها مع عملائها الحاليين والمحتملين، بما في ذلك المبيعات، التسويق، وخدمة العملاء. الهدف هو تحسين رضا العملاء، زيادة ولائهم، وزيادة ربحية العملاء.</p>
+                </div>
+                <ul>
+                    <li><strong>كيف تعمل:</strong> تقوم نظم CRM بجمع وتوحيد بيانات العملاء من جميع نقاط الاتصال (مثل الموقع الإلكتروني، مركز الاتصال، مندوبي المبيعات، وسائل التواصل الاجتماعي) في قاعدة بيانات مركزية واحدة. ثم توفر أدوات تحليلية لفهم سلوك العملاء واحتياجاتهم، وتخصيص التفاعلات معهم.
+                        <p><strong>الشكل (3-10) <span class="figure-ref">(صفحة 95)</span></strong> يوضح دور CRM في منظمة الأعمال، حيث يجمع معلومات من المبيعات، التسويق، والخدمات لتوفير رؤية 360 درجة للعميل.</p>
+                    </li>
+                    <li><strong>الوظائف التي تدعمها:</strong>
+                        <ul>
+                            <li><strong>أتمتة قوة المبيعات (Sales Force Automation - SFA):</strong> تساعد مندوبي المبيعات في إدارة العملاء المحتملين، تتبع فرص البيع، جدولة المواعيد، وإعداد عروض الأسعار.</li>
+                            <li><strong>إدارة التسويق (Marketing Management):</strong> تساعد في تخطيط وتنفيذ وتقييم الحملات التسويقية، إدارة قوائم العملاء، وتخصيص العروض.</li>
+                            <li><strong>خدمة العملاء والدعم (Customer Service and Support):</strong> تساعد في إدارة استفسارات العملاء وشكواهم، تتبع تاريخ الخدمة، وتوفير قواعد معرفة لحل المشكلات بسرعة.</li>
+                        </ul>
+                    </li>
+                    <li><strong>الفوائد (Benefits):</strong>
+                        <p><strong>الجدول (3-13) <span class="figure-ref">(صفحة 96)</span></strong> يوضح بعض فوائد نظم إدارة علاقات الزبائن:</p>
+                        <ul>
+                            <li><strong>القيمة التي تعطيها نظم إدارة علاقات الزبائن للأعمال:</strong>
+                                <ul>
+                                    <li>زيادة رضا الزبائن.</li>
+                                    <li>انخفاض تكاليف التسويق المباشر.</li>
+                                    <li>تحسين فعالية عمليات التسويق.</li>
+                                    <li>انخفاض تكاليف كسب الزبائن والاحتفاظ بهم.</li>
+                                    <li>زيادة إيرادات المبيعات.</li>
+                                    <li>الاستجابة أفضل لاحتياجات الزبائن.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <p>بشكل عام، تهدف نظم CRM إلى بناء علاقات أقوى وأكثر ربحية مع العملاء من خلال فهمهم بشكل أفضل وتقديم تجارب مخصصة لهم.</p>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <h3>4. نظم إدارة المعرفة (Knowledge Management Systems - KMS) <span class="page-ref">(صفحة 96)</span></h3>
+                <div class="highlight">
+                    <p><strong>الغرض الأساسي:</strong> تمكين المنظمات من إدارة عمليات التقاط وتخزين ونشر وتطبيق المعرفة والخبرة بشكل أفضل داخل المنظمة. الهدف هو تحويل المعرفة الضمنية (الموجودة في عقول الموظفين) والمعرفة الصريحة (الموثقة) إلى أصول تنظيمية قيمة يمكن الاستفادة منها.</p>
+                </div>
+                <ul>
+                    <li><strong>أهمية المعرفة:</strong> المعرفة تعتبر موردًا استراتيجيًا للمنظمات، حيث تساهم في الابتكار، تحسين جودة القرارات، زيادة الكفاءة، وحل المشكلات.</li>
+                    <li><strong>العمليات الرئيسية لإدارة المعرفة <span class="page-ref">(صفحة 97)</span>:</strong>
+                        <ol>
+                            <li>
+                                <strong>الحصول على المعرفة (Acquiring Knowledge):</strong>
+                                <p>عملية جمع وتحديد المعرفة من مصادر داخلية وخارجية. تشمل:</p>
+                                <ul>
+                                    <li>توثيق المعرفة الضمنية للموظفين الخبراء.</li>
+                                    <li>استخلاص المعرفة من قواعد البيانات والتقارير.</li>
+                                    <li>مراقبة البيئة الخارجية للحصول على معلومات عن المنافسين والاتجاهات الجديدة.</li>
+                                    <li>شراء قواعد بيانات أو تقارير بحثية.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>تخزين المعرفة (Storing Knowledge):</strong>
+                                <p>تنظيم وتخزين المعرفة المكتسبة في مستودعات يسهل الوصول إليها. تشمل:</p>
+                                <ul>
+                                    <li>إنشاء قواعد بيانات معرفية (Knowledge Bases).</li>
+                                    <li>استخدام أنظمة إدارة المستندات (Document Management Systems).</li>
+                                    <li>تطوير أنظمة خبراء (Expert Systems) لتخزين قواعد المعرفة المتخصصة.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>نشر المعرفة (Knowledge Dissemination):</strong>
+                                <p>توزيع المعرفة على الأشخاص المناسبين في الوقت المناسب. تشمل:</p>
+                                <ul>
+                                    <li>البوابات الإلكترونية (Portals) التي توفر نقطة وصول موحدة للمعلومات والموارد المعرفية.</li>
+                                    <li>البريد الإلكتروني والرسائل الفورية.</li>
+                                    <li>محركات البحث الداخلية للبحث عن المعلومات والخبراء.</li>
+                                    <li>أدوات التعاون (Collaboration Tools) مثل الويكي (Wikis) ومنتديات النقاش.</li>
+                                    <li>برامج التدريب والتوجيه.</li>
+                                    <li>شبكات التواصل الاجتماعي الداخلية (Social Networks) لتسهيل التواصل بين الخبراء.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>تطبيق المعرفة (Knowledge Application):</strong>
+                                <p>استخدام المعرفة في عمليات صنع القرار، حل المشكلات، تطوير المنتجات والخدمات، وتحسين العمليات. تشمل:</p>
+                                <ul>
+                                    <li>دمج المعرفة في إجراءات العمل القياسية.</li>
+                                    <li>توفير أدوات دعم قرار تستند إلى المعرفة.</li>
+                                    <li>تشجيع ثقافة مشاركة المعرفة وتطبيقها.</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </li>
+                    <li><strong>الفوائد:</strong> تحسين الابتكار، تسريع حل المشكلات، تقليل الأخطاء، الاحتفاظ بالمعرفة التنظيمية (خاصة عند مغادرة الموظفين الخبراء)، تحسين جودة القرارات.</li>
+                </ul>
+            </li>
+        </ol>
+        <hr class="section-divider">
+```
+
+**الجزء الثالث: HTML (من شرح الشبكات الداخلية والخارجية حتى نهاية الملف والـ JavaScript)**
+
+```html
+        <h2>3.3 الشبكات الداخلية والخارجية (Intranet and Extranet) <span class="page-ref">(صفحة 98)</span></h2>
+        <p>
+            تعتبر الشبكات الداخلية (Intranets) والشبكات الخارجية (Extranets) تطبيقات مهمة لتكنولوجيا الإنترنت والويب داخل المنظمات وفيما بينها.
+        </p>
+        <ul>
+            <li>
+                <h3>1. الشبكات الداخلية (Intranets):</h3>
+                <div class="highlight">
+                    <p><strong>التعريف:</strong> هي شبكات خاصة داخلية للمنظمة تستخدم معايير وبروتوكولات الإنترنت والويب (مثل TCP/IP, HTTP, HTML). الوصول إليها يقتصر على موظفي المنظمة المصرح لهم فقط.</p>
+                </div>
+                <ul>
+                    <li><strong>الغرض الأساسي:</strong> تسهيل تبادل المعلومات، الاتصالات، والتعاون داخل المنظمة.</li>
+                    <li><strong>الاستخدامات الشائعة:</strong>
+                        <ul>
+                            <li>نشر سياسات وإجراءات الشركة.</li>
+                            <li>توفير دليل للموظفين ومعلومات الاتصال.</li>
+                            <li>نشر الأخبار والإعلانات الداخلية.</li>
+                            <li>توفير الوصول إلى تطبيقات الشركة وقواعد البيانات الداخلية.</li>
+                            <li>تسهيل إدارة المشاريع والعمل الجماعي.</li>
+                            <li>توفير مواد تدريبية للموظفين.</li>
+                            <li>إنشاء منتديات نقاش داخلية أو قواعد معرفة (ويكي).</li>
+                        </ul>
+                    </li>
+                    <li><strong>المزايا:</strong> تكلفة منخفضة نسبيًا (تعتمد على البنية التحتية للإنترنت)، سهولة الاستخدام (واجهات مألوفة تشبه الويب)، تحسين الاتصالات الداخلية، زيادة كفاءة تبادل المعلومات.</li>
+                </ul>
+            </li>
+            <li>
+                <h3>2. الشبكات الخارجية (Extranets):</h3>
+                <div class="highlight">
+                    <p><strong>التعريف:</strong> هي شبكات داخلية (Intranets) يتم تمديدها لتشمل مستخدمين مصرح لهم من خارج المنظمة، مثل العملاء الرئيسيين، الموردين، أو الشركاء التجاريين. يتم تأمين الوصول إليها عادةً بكلمات مرور أو تقنيات أخرى.</p>
+                </div>
+                <ul>
+                    <li><strong>الغرض الأساسي:</strong> تسهيل تبادل المعلومات والتعاون بشكل آمن وفعال مع الأطراف الخارجية الهامة.</li>
+                    <li><strong>الاستخدامات الشائعة:</strong>
+                        <ul>
+                            <li>السماح للموردين بالوصول إلى نظام إدارة المخزون للشركة لمعرفة مستويات المخزون وتقديم طلبات التوريد.</li>
+                            <li>السماح للعملاء بتتبع حالة طلباتهم أو الوصول إلى معلومات حساباتهم.</li>
+                            <li>تسهيل التعاون مع الشركاء في تصميم المنتجات أو تطوير المشاريع المشتركة.</li>
+                            <li>توفير معلومات عن المنتجات والأسعار للموزعين.</li>
+                        </ul>
+                    </li>
+                    <li><strong>المزايا:</strong> تحسين التنسيق مع الشركاء، تقليل التكاليف (مثل تكاليف الاتصالات الهاتفية والفاكس)، تسريع العمليات التجارية، بناء علاقات أقوى مع الموردين والعملاء.</li>
+                </ul>
+            </li>
+        </ul>
+        <p>
+            باختصار، تعتبر Intranets و Extranets أدوات قوية تستفيد من تكنولوجيا الإنترنت لتعزيز كفاءة العمليات وتحسين الاتصالات والتعاون داخل المنظمة ومع شركائها الخارجيين.
+        </p>
+        <hr class="section-divider">
+
+        <h2>3.4 إدارة موارد المعلومات في المنظمات (Management of Information Resources in Organizations) <span class="page-ref">(صفحة 99)</span></h2>
+        <p>
+            نظراً للأهمية المتزايدة لنظم المعلومات، أصبحت إدارتها كمورد استراتيجي أمرًا حيويًا لنجاح المنظمات. يتضمن ذلك إنشاء هيكل تنظيمي مناسب لوظيفة نظم المعلومات وتطبيق ممارسات حوكمة فعالة.
+        </p>
+
+        <h3>3.4.1 قسم نظم المعلومات (Information Systems Department) <span class="page-ref">(صفحة 99)</span></h3>
+        <div class="highlight">
+            <p><strong>التعريف:</strong> هو الوحدة التنظيمية الرسمية داخل المنظمة المسؤولة عن توفير وتطوير وصيانة وتشغيل خدمات تكنولوجيا المعلومات ونظم المعلومات.</p>
+        </div>
+        <p>يتكون قسم نظم المعلومات عادة من مجموعة من المتخصصين ذوي المهارات المختلفة، منهم:</p>
+        <ul>
+            <li>
+                <strong>المبرمجون (Programmers):</strong>
+                <p>هم المتخصصون الفنيون الذين يقومون بكتابة واختبار وتصحيح تعليمات البرامج (الكود) التي تشكل تطبيقات نظم المعلومات. يترجمون متطلبات النظام التي يحددها محللو النظم إلى لغة يفهمها الحاسوب.</p>
+            </li>
+            <li>
+                <strong>محللو النظم (Systems Analysts):</strong>
+                <p>يعتبرون همزة الوصل الرئيسية بين مجموعات نظم المعلومات (الفنيين) وبقية أقسام المنظمة (المستخدمين). يقومون بدراسة مشكلات الأعمال واحتياجات المستخدمين، وتصميم نظم معلومات جديدة أو تحسين النظم القائمة لتلبية هذه الاحتياجات. يترجمون احتياجات العمل إلى متطلبات فنية يمكن للمبرمجين فهمها.</p>
+            </li>
+            <li>
+                <strong>مديرو نظم المعلومات (Information Systems Managers):</strong>
+                <p>هم المسؤولون عن قيادة وإدارة فرق المبرمجين والمحللين وغيرهم من المتخصصين في قسم نظم المعلومات. قد يكونون مديرين لمشاريع محددة، أو مديرين لوحدات وظيفية داخل القسم (مثل مدير الشبكات، مدير قواعد البيانات، مدير أمن المعلومات).</p>
+            </li>
+            <li>
+                <strong>الرئيس التنفيذي للمعلومات (Chief Information Officer - CIO):</strong>
+                <p>هو مدير أول في الإدارة العليا يشرف على استخدام تكنولوجيا المعلومات في المنظمة بأكملها. يلعب دورًا استراتيجيًا في مواءمة استراتيجية تكنولوجيا المعلومات مع استراتيجية الأعمال الشاملة للمنظمة. قد توجد أيضًا مناصب قيادية أخرى مثل الرئيس التنفيذي للتكنولوجيا (CTO) الذي يركز على الجوانب التقنية، والرئيس التنفيذي لأمن المعلومات (CISO) المسؤول عن أمن المعلومات، والرئيس التنفيذي للمعرفة (CKO) المسؤول عن مبادرات إدارة المعرفة.</p>
+            </li>
+        </ul>
+        <p>بالإضافة إلى هؤلاء، قد يضم القسم متخصصين في مجالات أخرى مثل إدارة قواعد البيانات، إدارة الشبكات، أمن المعلومات، دعم المستخدمين، وغيرها.</p>
+
+        <h3>3.4.2 تنظيم وظيفة نظم المعلومات (Organizing the Information Systems Function) <span class="page-ref">(صفحة 100)</span></h3>
+        <p>
+            تختلف طريقة تنظيم وظيفة نظم المعلومات من منظمة لأخرى. هناك نموذجان رئيسيان، وغالبًا ما يتم استخدام مزيج منهما:
+        </p>
+        <ul>
+            <li>
+                <strong>إدارة نظم معلومات لامركزية (Decentralized Information Systems Management) <span class="page-ref">(صفحة 100)</span>:</strong>
+                <p>في هذا النموذج، يتم توزيع مسؤولية نظم المعلومات على الأقسام أو الوحدات الوظيفية المختلفة. كل قسم (مثل التسويق، المالية، الإنتاج) قد يكون لديه فريق نظم معلومات خاص به أو موظفون مسؤولون عن تلبية احتياجاته من تكنولوجيا المعلومات.</p>
+                <ul>
+                    <li><strong>المزايا:</strong> استجابة أسرع لاحتياجات القسم المحددة، فهم أعمق لمتطلبات العمل في ذلك القسم، شعور أكبر بالملكية والتحكم من قبل القسم.</li>
+                    <li><strong>العيوب:</strong> قد يؤدي إلى ازدواجية في الجهود والموارد (مثل شراء نفس البرامج أو تطوير أنظمة مشابهة بشكل منفصل)، صعوبة في تحقيق التكامل وتبادل المعلومات عبر الأقسام، عدم وجود معايير موحدة على مستوى المنظمة، ارتفاع التكاليف الإجمالية.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>إدارة نظم معلومات مركزية (Centralized Information Systems Management) <span class="page-ref">(صفحة 101)</span>:</strong>
+                <p>في هذا النموذج، يتم تجميع جميع موظفي ومعدات ومسؤوليات نظم المعلومات في قسم واحد مركزي يخدم جميع أنحاء المنظمة.</p>
+                <ul>
+                    <li><strong>المزايا:</strong> اقتصاديات الحجم (مثل شراء التراخيص بكميات كبيرة)، سهولة فرض معايير موحدة على مستوى المنظمة، تحقيق تكامل أفضل بين النظم، رؤية شاملة لاحتياجات المنظمة من تكنولوجيا المعلومات، تحكم أفضل في التكاليف والأمن.</li>
+                    <li><strong>العيوب:</strong> قد يكون أقل استجابة للاحتياجات الفريدة للأقسام المختلفة، قد لا يفهم موظفو القسم المركزي طبيعة عمل كل قسم بشكل كامل، قد يشعر المستخدمون في الأقسام بأنهم أقل تحكمًا في نظمهم.</li>
+                </ul>
+            </li>
+        </ul>
+        <p>
+            العديد من المنظمات الكبيرة تتبنى نموذجًا هجينًا، حيث يكون هناك قسم مركزي لنظم المعلومات مسؤول عن البنية التحتية والمعايير والسياسات العامة، مع وجود وحدات أو ممثلين لنظم المعلومات في الأقسام المختلفة لتلبية الاحتياجات الخاصة وتقديم الدعم المباشر.
+        </p>
+
+        <h3>3.4.3 حوكمة تكنولوجيا المعلومات (IT Governance) <span class="page-ref">(صفحة 101)</span></h3>
+        <div class="highlight">
+            <p><strong>التعريف:</strong> هي مجموعة من السياسات والعمليات والهياكل التنظيمية التي تحدد كيفية اتخاذ القرارات المتعلقة بتكنولوجيا المعلومات، ومن هو المسؤول عن هذه القرارات، وكيف يتم ضمان أن استخدام تكنولوجيا المعلومات يتماشى مع أهداف المنظمة ويحقق قيمة مضافة ويدير المخاطر بشكل فعال.</p>
+        </div>
+        <p>
+            تهدف حوكمة تكنولوجيا المعلومات إلى الإجابة على أسئلة رئيسية مثل:
+        </p>
+        <ul>
+            <li>من الذي يمتلك سلطة اتخاذ القرارات المتعلقة بالاستثمارات في تكنولوجيا المعلومات؟</li>
+            <li>كيف يتم تحديد أولويات مشاريع تكنولوجيا المعلومات؟</li>
+            <li>كيف يتم قياس أداء وفعالية نظم المعلومات؟</li>
+            <li>كيف يتم ضمان أمن المعلومات وحماية أصول المنظمة الرقمية؟</li>
+            <li>كيف يتم ضمان الامتثال للقوانين واللوائح المتعلقة بتكنولوجيا المعلومات؟</li>
+        </ul>
+        <p>
+            يذكر الكتاب <span class="page-ref">(صفحات 101-102)</span> أن من مكونات حوكمة تكنولوجيا المعلومات الجيدة ما يلي:
+        </p>
+        <ol>
+            <li><strong>المواءمة بين استراتيجية تكنولوجيا المعلومات واستراتيجية الأعمال (Strategic Alignment):</strong> ضمان أن خطط واستثمارات تكنولوجيا المعلومات تدعم بشكل مباشر الأهداف الاستراتيجية الشاملة للمنظمة.</li>
+            <li><strong>وضع خطة تشغيلية لتكنولوجيا المعلومات (IT Operational Plan):</strong> خطة تفصيلية لكيفية استخدام وتشغيل وصيانة موارد تكنولوجيا المعلومات اليومية لدعم عمليات الأعمال.</li>
+            <li><strong>وضع خطة مالية وتمويلية لتكنولوجيا المعلومات (IT Financial Plan):</strong> تحديد الميزانيات المخصصة لتكنولوجيا المعلومات، كيفية تمويل المشاريع، ومراقبة التكاليف والعائد على الاستثمار.</li>
+            <li><strong>توفير خطة استراتيجية طويلة المدى لحماية وأمن المعلومات ونظم المعلومات (Long-term IT Security Plan):</strong> تحديد المخاطر الأمنية ووضع استراتيجيات وسياسات وإجراءات لحماية أصول المعلومات والبنية التحتية التكنولوجية.</li>
+            <li><strong>مراجعة الإنفاق الاستثماري في مجال أمن وحماية المعلومات ومدى توافق ذلك مع الخطط الاستراتيجية (Review of Security Investment):</strong> تقييم فعالية الاستثمارات في أمن المعلومات والتأكد من أنها تتماشى مع الأولويات الاستراتيجية للمنظمة ومستوى المخاطر المقبول.</li>
+        </ol>
+        <p>
+            تعتبر حوكمة تكنولوجيا المعلومات الفعالة أمرًا بالغ الأهمية لضمان أن تكنولوجيا المعلومات تساهم بشكل إيجابي في نجاح المنظمة، بدلاً من أن تكون مجرد مركز تكلفة أو مصدر للمخاطر.
+        </p>
+
+        <hr class="section-divider">
+        <h2>أسئلة للمناقشة <span class="page-ref">(صفحة 103)</span></h2>
+        <p>
+            ينهي الفصل الثالث بطرح مجموعة من الأسئلة الهامة التي تهدف إلى تحفيز التفكير النقدي ومناقشة المفاهيم التي تم تناولها. هذه الأسئلة تساعد القارئ على ترسيخ فهمه للمادة وتطبيقها على سيناريوهات عملية. (لا يتم ذكر الأسئلة هنا بالتفصيل، ولكن الإشارة إلى وجودها يكمل ملخص الفصل).
+        </p>
+        <hr class="section-divider">
+
+
+        <h2>امتحان محوسب: الفصل الثالث</h2>
+        <div id="quiz-container">
+            <div id="question-area">
+                <!-- Questions will be loaded here by JavaScript -->
+            </div>
+            <div class="quiz-navigation">
+                <button id="prev-question-btn" disabled>السابق</button>
+                <button id="next-question-btn">التالي</button>
+                <button id="submit-quiz-btn" style="display:none; background-color: var(--accent-color);">إرسال الإجابات</button>
+            </div>
+            <div id="quiz-score" style="display:none;">
+                <!-- Score will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Hearts Animation Script
+        const heartsBg = document.getElementById('hearts-bg'); 
+        const numHearts = 30; 
+
+        for (let i = 0; i < numHearts; i++) {
+            let heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤'; 
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 5 + 5) + 's'; 
+            heart.style.animationDelay = Math.random() * 5 + 's'; 
+            heart.style.fontSize = (Math.random() * 1.5 + 1) + 'rem'; 
+            document.body.appendChild(heart); 
+        }
+        // End Hearts Animation Script
+
+
+        const quizData = [
+            { question: "ما هو التعريف الأساسي للعمليات الإدارية (Business Processes)؟", options: ["مجموعة من التقارير المالية", "طريقة تنظيم العمل لإنتاج قيمة", "هيكل تنظيمي للشركة", "برنامج حاسوبي للمبيعات"], correctAnswer: "طريقة تنظيم العمل لإنتاج قيمة" },
+            { question: "أي من التالي يعتبر مثالاً على عملية إدارية وظيفية في قسم التصنيع والإنتاج؟", options: ["تحليل السوق", "جدولة الإنتاج", "إدارة التدفق النقدي", "تعيين الموظفين"], correctAnswer: "جدولة الإنتاج" },
+            { question: "عملية 'تلبية الطلبات' (Order Fulfillment) تعتبر مثالاً على أي نوع من العمليات الإدارية؟", options: ["عملية وظيفية للمبيعات فقط", "عملية وظيفية للمخازن فقط", "عملية مشتركة بين الوظائف", "عملية مالية بحتة"], correctAnswer: "عملية مشتركة بين الوظائف" },
+            { question: "كيف تساهم نظم المعلومات في 'تغيير تدفق المعلومات' ضمن العمليات الإدارية؟", options: ["بتقليل عدد الموظفين فقط", "بجعل المعلومات متاحة لعدد أكبر من المشاركين وتمكين العمل المتوازي", "بزيادة أسعار المنتجات", "بأتمتة المهام اليدوية فقط"], correctAnswer: "بجعل المعلومات متاحة لعدد أكبر من المشاركين وتمكين العمل المتوازي" },
+            { question: "أي مستوى إداري تخدمه نظم معالجة المعاملات (TPS) بشكل أساسي؟", options: ["المستوى الاستراتيجي", "المستوى الإداري (الوسطى)", "المستوى المعرفي", "المستوى التشغيلي"], correctAnswer: "المستوى التشغيلي" },
+            { question: "نظام كشوف المرتبات (Payroll System) هو مثال على أي نوع من نظم المعلومات؟", options: ["نظام دعم القرار (DSS)", "نظام معلومات إدارية (MIS)", "نظام معالجة المعاملات (TPS)", "نظام دعم الإدارة التنفيذية (ESS)"], correctAnswer: "نظام معالجة المعاملات (TPS)" },
+            { question: "ما هو الغرض الرئيسي لنظم العمل المعرفي (KWS)؟", options: ["تسجيل المعاملات اليومية", "مساعدة العاملين في مجال المعرفة على اكتشاف ودمج المعرفة الجديدة", "توفير تقارير ملخصة للإدارة الوسطى", "دعم اتخاذ القرارات الاستراتيجية للإدارة العليا"], correctAnswer: "مساعدة العاملين في مجال المعرفة على اكتشاف ودمج المعرفة الجديدة" },
+            { question: "نظم التصميم بمساعدة الحاسوب (CAD) هي مثال على:", options: ["نظم أتمتة المكاتب (OAS)", "نظم العمل المعرفي (KWS)", "نظم معلومات إدارية (MIS)", "نظم معالجة المعاملات (TPS)"], correctAnswer: "نظم العمل المعرفي (KWS)" },
+            { question: "ما هو المصدر الرئيسي للبيانات لنظم المعلومات الإدارية (MIS)؟", options: ["البيانات الخارجية فقط", "بيانات من نظم دعم القرار (DSS)", "بيانات من نظم معالجة المعاملات (TPS)", "مقابلات مع المديرين التنفيذيين"], correctAnswer: "بيانات من نظم معالجة المعاملات (TPS)" },
+            { question: "أي نوع من التقارير يعتبر من المخرجات النموذجية لنظم المعلومات الإدارية (MIS)؟", options: ["تحليلات 'ماذا لو' المعقدة", "لوحات المعلومات التفاعلية للإدارة العليا", "تقارير الاستثناءات والتقارير الدورية", "خطط استراتيجية طويلة الأجل"], correctAnswer: "تقارير الاستثناءات والتقارير الدورية" },
+            { question: "نظم دعم القرارات (DSS) مصممة لدعم أي نوع من القرارات بشكل أساسي؟", options: ["القرارات الروتينية والمنظمة جداً", "القرارات غير الروتينية أو شبه المنظمة", "القرارات التشغيلية اليومية فقط", "تسجيل المعاملات التاريخية"], correctAnswer: "القرارات غير الروتينية أو شبه المنظمة" },
+            { question: "خاصية تحليل 'ماذا لو' (What-if Analysis) هي سمة مميزة لأي نوع من النظم؟", options: ["TPS", "MIS", "DSS", "OAS"], correctAnswer: "DSS" },
+            { question: "نظم دعم الإدارة التنفيذية (ESS) تخدم بشكل أساسي:", options: ["مديري الخطوط الأمامية", "عمال البيانات", "الإدارة الوسطى", "الإدارة العليا (التنفيذيين)"], correctAnswer: "الإدارة العليا (التنفيذيين)" },
+            { question: "تعتمد نظم دعم الإدارة التنفيذية (ESS) بشكل كبير على عرض المعلومات من خلال:", options: ["جداول بيانات تفصيلية", "نماذج رياضية معقدة فقط", "لوحات المعلومات الرقمية (Digital Dashboards) والرسوم البيانية", "تعليمات برمجية"], correctAnswer: "لوحات المعلومات الرقمية (Digital Dashboards) والرسوم البيانية" },
+            { question: "نظام 'تحليل السوق' (Market Analysis) يخدم أي مستوى إداري ضمن وظيفة المبيعات والتسويق؟", options: ["التشغيلي", "المعرفي", "الإداري", "الاستراتيجي"], correctAnswer: "المعرفي" },
+            { question: "نظام 'التحكم بالآلات' (Machine Control) في خط الإنتاج هو مثال على نظام يخدم المستوى:", options: ["التشغيلي", "المعرفي", "الإداري", "الاستراتيجي"], correctAnswer: "التشغيلي" },
+            { question: "نظام 'الميزانية' (Budgeting) يخدم أي مستوى إداري في قسم التمويل والمحاسبة؟", options: ["التشغيلي", "المعرفي", "الإداري", "الاستراتيجي"], correctAnswer: "الإداري" },
+            { question: "نظام 'تخطيط المسار الوظيفي' (Career Pathing) يخدم أي مستوى إداري في قسم الموارد البشرية؟", options: ["التشغيلي", "المعرفي", "الإداري", "الاستراتيجي"], correctAnswer: "المعرفي" },
+            { question: "ما هو الهدف الرئيسي من 'تطبيقات المؤسسة' (Enterprise Applications)؟", options: ["خدمة قسم واحد فقط بكفاءة عالية", "دمج وتنسيق العمليات والبيانات عبر جميع وظائف المنظمة", "تقليل تكاليف الأجهزة فقط", "توفير برامج مكتبية للموظفين"], correctAnswer: "دمج وتنسيق العمليات والبيانات عبر جميع وظائف المنظمة" },
+            { question: "نظام يهدف إلى دمج جميع العمليات التجارية الرئيسية في قاعدة بيانات مركزية واحدة هو:", options: ["SCM", "CRM", "KMS", "ERP"], correctAnswer: "ERP" },
+            { question: "أي من التالي يعتبر من فوائد نظم تخطيط موارد المؤسسة (ERP)؟", options: ["زيادة 'صوامع المعلومات' بين الأقسام", "صعوبة الحصول على رؤية موحدة للأعمال", "الاستجابة السريعة لطلبات العملاء وتوحيد البيانات", "الحاجة إلى إدخال البيانات بشكل متكرر في أنظمة مختلفة"], correctAnswer: "الاستجابة السريعة لطلبات العملاء وتوحيد البيانات" },
+            { question: "نظم إدارة سلسلة التوريد (SCM) تساعد في إدارة العلاقات مع:", options: ["العملاء فقط", "الموظفين فقط", "الموردين وشركات التوزيع والخدمات اللوجستية", "المنافسين فقط"], correctAnswer: "الموردين وشركات التوزيع والخدمات اللوجستية" },
+            { question: "ما هو المكون الذي يشمل موردي المنظمة في سلسلة التوريد؟", options: ["سلسلة التوريد الداخلية", "سلسلة التوريد المصب (Downstream)", "سلسلة التوريد المنبع (Upstream)", "سلسلة التوريد العكسية"], correctAnswer: "سلسلة التوريد المنبع (Upstream)" },
+            { question: "نظم إدارة علاقات الزبائن (CRM) تهدف بشكل أساسي إلى:", options: ["إدارة مخزون المواد الخام", "تحسين رضا العملاء وزيادة ولائهم", "تخطيط الإنتاج والجدولة", "إدارة الشؤون المالية للموظفين"], correctAnswer: "تحسين رضا العملاء وزيادة ولائهم" },
+            { question: "أتمتة قوة المبيعات (SFA) هي وظيفة رئيسية لأي نوع من تطبيقات المؤسسة؟", options: ["ERP", "SCM", "CRM", "KMS"], correctAnswer: "CRM" },
+            { question: "ما هو الغرض الرئيسي لنظم إدارة المعرفة (KMS)؟", options: ["تسجيل المعاملات المالية", "إدارة عمليات التقاط وتخزين ونشر وتطبيق المعرفة", "تتبع شحنات المنتجات", "إدارة حملات التسويق"], correctAnswer: "إدارة عمليات التقاط وتخزين ونشر وتطبيق المعرفة" },
+            { question: "عملية 'نشر المعرفة' (Knowledge Dissemination) في KMS تشمل استخدام:", options: ["محركات البحث الداخلية والبوابات الإلكترونية", "فحص جودة المنتج فقط", "إصدار أوامر الشراء فقط", "تحديد أسعار المنتجات فقط"], correctAnswer: "محركات البحث الداخلية والبوابات الإلكترونية" },
+            { question: "ما هو 'الإنترانت' (Intranet)؟", options: ["شبكة عالمية متاحة للجميع", "شبكة داخلية خاصة بالمنظمة تستخدم تقنيات الإنترنت", "شبكة تربط المنظمة بعملائها فقط", "نظام لتتبع المنافسين"], correctAnswer: "شبكة داخلية خاصة بالمنظمة تستخدم تقنيات الإنترنت" },
+            { question: "ما هو 'الإكسترانت' (Extranet)؟", options: ["شبكة داخلية للموظفين فقط", "امتداد لشبكة الإنترانت ليشمل مستخدمين خارجيين مصرح لهم", "اسم آخر لشبكة الإنترنت العامة", "نظام لتصميم المواقع الإلكترونية"], correctAnswer: "امتداد لشبكة الإنترانت ليشمل مستخدمين خارجيين مصرح لهم" },
+            { question: "من هو المسؤول عن كتابة واختبار تعليمات البرامج في قسم نظم المعلومات؟", options: ["محلل النظم", "مدير نظم المعلومات", "المبرمج", "الرئيس التنفيذي للمعلومات (CIO)"], correctAnswer: "المبرمج" },
+            { question: "من يعتبر همزة الوصل الرئيسية بين الفنيين والمستخدمين في قسم نظم المعلومات؟", options: ["المبرمج", "محلل النظم", "مدير الشبكات", "أخصائي أمن المعلومات"], correctAnswer: "محلل النظم" },
+            { question: "ما هو الدور الرئيسي للرئيس التنفيذي للمعلومات (CIO)؟", options: ["كتابة الأكواد البرمجية فقط", "الإشراف على استخدام تكنولوجيا المعلومات بشكل استراتيجي في المنظمة", "إدارة رواتب الموظفين", "تصميم الحملات التسويقية"], correctAnswer: "الإشراف على استخدام تكنولوجيا المعلومات بشكل استراتيجي في المنظمة" },
+            { question: "في نموذج 'إدارة نظم معلومات لامركزية'، أين تتركز مسؤولية نظم المعلومات؟", options: ["في قسم مركزي واحد يخدم الجميع", "يتم توزيعها على الأقسام والوحدات الوظيفية المختلفة", "لدى الرئيس التنفيذي للمعلومات فقط", "لدى شركة استشارية خارجية"], correctAnswer: "يتم توزيعها على الأقسام والوحدات الوظيفية المختلفة" },
+            { question: "ماذا يعني مصطلح 'حوكمة تكنولوجيا المعلومات' (IT Governance)؟", options: ["شراء أحدث الأجهزة والبرامج", "مجموعة السياسات والعمليات لتوجيه ورقابة استخدام تكنولوجيا المعلومات", "تدريب الموظفين على استخدام الحاسوب", "تصميم شعار قسم تكنولوجيا المعلومات"], correctAnswer: "مجموعة السياسات والعمليات لتوجيه ورقابة استخدام تكنولوجيا المعلومات" },
+            { question: "'المواءمة بين استراتيجية تكنولوجيا المعلومات واستراتيجية الأعمال' هي أحد مكونات:", options: ["تصميم قواعد البيانات", "حوكمة تكنولوجيا المعلومات الفعالة", "برمجة تطبيقات الويب", "صيانة الأجهزة"], correctAnswer: "حوكمة تكنولوجيا المعلومات الفعالة" },
+            { question: "أي من التالي *ليس* من الأنواع الرئيسية الأربعة لتطبيقات المؤسسة المذكورة في الفصل؟", options: ["ERP", "SCM", "CRM", "TPS"], correctAnswer: "TPS" }, 
+            { question: "نظام يركز على مساعدة المديرين في اتخاذ قرارات فريدة وسريعة التغير باستخدام نماذج وتحليلات 'ماذا لو'.", options: ["TPS", "MIS", "DSS", "OAS"], correctAnswer: "DSS" },
+            { question: "نظام يستخدمه المهندسون لإنشاء نماذج رقمية للمنتجات هو:", options: ["Excel", "Word", "CAD", "Payroll System"], correctAnswer: "CAD" },
+            { question: "الشبكات التي تسمح للموردين بالوصول إلى نظام إدارة المخزون للشركة تسمى:", options: ["Intranets", "Extranets", "Internets", "Darknets"], correctAnswer: "Extranets" },
+            { question: "الهدف من 'تأثير السوط' (Bullwhip Effect) في سلسلة التوريد هو شيء تسعى نظم SCM إلى:", options: ["زيادته", "تقليله أو القضاء عليه", "تجاهله", "دراسته فقط دون تغييره"], correctAnswer: "تقليله أو القضاء عليه" }
+        ];
+
+
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(quizData.length).fill(null);
+
+        const questionArea = document.getElementById('question-area');
+        const prevButton = document.getElementById('prev-question-btn');
+        const nextButton = document.getElementById('next-question-btn');
+        const submitButton = document.getElementById('submit-quiz-btn');
+        const quizScoreDiv = document.getElementById('quiz-score');
+
+        function loadQuestion(index) {
+            const questionData = quizData[index];
+            questionArea.innerHTML = `
+                <div class="question-block">
+                    <p class="question-text">${index + 1}. ${questionData.question}</p>
+                    <ul class="options-list">
+                        ${questionData.options.map((option, i) => `
+                            <li>
+                                <label>
+                                    <input type="radio" name="question${index}" value="${option}" ${userAnswers[index] === option ? 'checked' : ''}>
+                                    ${option}
+                                </label>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `;
+
+            document.querySelectorAll(`input[name="question${index}"]`).forEach(radio => {
+                radio.addEventListener('change', (event) => {
+                    userAnswers[index] = event.target.value;
+                    document.querySelectorAll(`#question-area .options-list li`).forEach(li => li.classList.remove('selected'));
+                    event.target.closest('li').classList.add('selected');
+                });
+            });
+            if (userAnswers[index] !== null) {
+                const selectedRadio = document.querySelector(`input[name="question${index}"][value="${userAnswers[index]}"]`);
+                if (selectedRadio) {
+                    selectedRadio.closest('li').classList.add('selected');
+                }
+            }
+            updateNavigationButtons();
+        }
+
+        function updateNavigationButtons() {
+            prevButton.disabled = currentQuestionIndex === 0;
+            if (currentQuestionIndex === quizData.length - 1) {
+                nextButton.style.display = 'none';
+                submitButton.style.display = 'inline-block';
+            } else {
+                nextButton.style.display = 'inline-block';
+                submitButton.style.display = 'none';
+            }
+        }
+
+        prevButton.addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentQuestionIndex < quizData.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+            }
+        });
+
+        submitButton.addEventListener('click', () => {
+            calculateScore();
+            questionArea.style.display = 'none';
+            prevButton.style.display = 'none';
+            nextButton.style.display = 'none'; 
+            submitButton.style.display = 'none';
+            quizScoreDiv.style.display = 'block';
+        });
+
+        function calculateScore() {
+            let score = 0;
+            quizData.forEach((questionData, index) => {
+                if (userAnswers[index] === questionData.correctAnswer) {
+                    score++;
+                }
+            });
+            const percentage = (score / quizData.length) * 100;
+            quizScoreDiv.innerHTML = `<p>🌹 تهانينا! لقد حصلت على ${score} من ${quizData.length} (${percentage.toFixed(2)}%) 🌹</p>`;
+        }
+
+        loadQuestion(currentQuestionIndex);
+    </script>
+</body>
+</html>
+
+```
